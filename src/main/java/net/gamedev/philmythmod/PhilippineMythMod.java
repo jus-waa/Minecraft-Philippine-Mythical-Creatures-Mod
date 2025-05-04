@@ -3,6 +3,8 @@ package net.gamedev.philmythmod;
 import com.mojang.logging.LogUtils;
 import net.gamedev.philmythmod.entity.ModEntities;
 import net.gamedev.philmythmod.entity.client.BakunawaRenderer;
+import net.gamedev.philmythmod.item.ModCreativeModeTabs;
+import net.gamedev.philmythmod.item.ModItems;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -27,7 +29,14 @@ public class PhilippineMythMod {
 
     public PhilippineMythMod(FMLJavaModLoadingContext context) {
         IEventBus modEventBus = context.getModEventBus();
+
+        // Ensure Deferred Reigster is properly registered.
+        ModItems.register(modEventBus);
         ModEntities.register(modEventBus);
+
+        // Creative Mode Tabs
+        ModCreativeModeTabs.register(modEventBus);
+
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
 
