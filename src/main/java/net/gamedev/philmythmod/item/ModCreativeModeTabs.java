@@ -17,12 +17,20 @@ public class ModCreativeModeTabs {
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.TOTEM_OF_CONFUSION.get()))
                     .title(Component.translatable("creativetab.philippine_mythical_mod_tab"))
                     .displayItems((pParameters, pOutput) -> {
+                        // item drops
                         pOutput.accept(ModItems.TOTEM_OF_CONFUSION.get());
                         pOutput.accept(ModItems.WINGED_HEART.get());
                         pOutput.accept(ModItems.CURSED_FANG.get());
                         pOutput.accept(ModItems.ANITO_STONE.get());
                         pOutput.accept(ModItems.FLOODGEM_HEART.get());
                         pOutput.accept(ModItems.MOONCORE_SCALE.get());
+
+                        // spawn eggs
+                        pOutput.accept(ModItems.BAKUNAWA_SPAWN_EGG.get());
+                        pOutput.accept(ModItems.ASWANG_SPAWN_EGG.get());
+                        pOutput.accept(ModItems.MANANANGGAL_SPAWN_EGG.get());
+                        pOutput.accept(ModItems.KAPRE_SPAWN_EGG.get());
+                        pOutput.accept(ModItems.MANGKUKULAM_SPAWN_EGG.get());
                     })
                     .build());
     public static void register(IEventBus eventBus) {

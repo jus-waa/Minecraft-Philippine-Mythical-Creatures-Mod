@@ -3,10 +3,15 @@ package net.gamedev.philmythmod.entity.client;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
+import net.gamedev.philmythmod.entity.animations.AswangAnimation;
+import net.gamedev.philmythmod.entity.animations.BakunawaAnimations;
+import net.gamedev.philmythmod.entity.boss.BakunawaBoss;
+import net.gamedev.philmythmod.entity.custom.AswangEntity;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 
 public class AswangModel<T extends Entity> extends HierarchicalModel<T>   {
@@ -103,9 +108,22 @@ public class AswangModel<T extends Entity> extends HierarchicalModel<T>   {
 
 	@Override
 	public void setupAnim(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+		this.root().getAllParts().forEach(ModelPart::resetPose);
+		this.applyHeadRotation(netHeadYaw, headPitch, ageInTicks);
 
+		// animations
+		this.animate(((AswangEntity) entity).idleAnimationState, AswangAnimation.idle, ageInTicks, 1f);
+		this.animateWalk(AswangAnimation.walk, limbSwing, limbSwingAmount, 2f, 2.5f);
+		this.animate(((AswangEntity) entity).deathAnimationState, AswangAnimation.death, ageInTicks, 1f);
 	}
 
+	private void applyHeadRotation(float pNetHeadYaw, float pHeadPitch, float pAgeInTicks) {
+		pNetHeadYaw = Mth.clamp(pNetHeadYaw, -30.0F, 30.0F);
+		pHeadPitch = Mth.clamp(pHeadPitch, -25.0F, 45.0F);
+
+		this.head.yRot = pNetHeadYaw * ((float)Math.PI / 180F);
+		this.head.xRot = pHeadPitch * ((float)Math.PI / 180F);
+	}
 	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
 		hitbox.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);

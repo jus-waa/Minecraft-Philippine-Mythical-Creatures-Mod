@@ -4,6 +4,9 @@ import net.gamedev.philmythmod.PhilippineMythMod;
 import net.gamedev.philmythmod.entity.ModEntities;
 import net.gamedev.philmythmod.entity.boss.BakunawaBoss;
 import net.gamedev.philmythmod.entity.custom.AswangEntity;
+import net.gamedev.philmythmod.entity.custom.KapreEntity;
+import net.gamedev.philmythmod.entity.custom.ManananggalEntity;
+import net.gamedev.philmythmod.entity.custom.MangkukulamEntity;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -15,9 +18,9 @@ public class ModEventBusEvents {
     public static void registerAttributes(EntityAttributeCreationEvent event){
         event.put(ModEntities.BAKUNAWA.get(), BakunawaBoss.createAttributes().build());
         event.put(ModEntities.ASWANG.get(), AswangEntity.createAttributes().build());
-        event.put(ModEntities.MANANANGGAL.get(), AswangEntity.createAttributes().build());
-        event.put(ModEntities.KAPRE.get(), AswangEntity.createAttributes().build());
-        event.put(ModEntities.MANGKUKULAM.get(), AswangEntity.createAttributes().build());
+        event.put(ModEntities.MANANANGGAL.get(), ManananggalEntity.createAttributes().build());
+        event.put(ModEntities.KAPRE.get(), KapreEntity.createAttributes().build());
+        event.put(ModEntities.MANGKUKULAM.get(), MangkukulamEntity.createAttributes().build());
 
     }
 
