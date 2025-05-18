@@ -31,6 +31,15 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModItems.MANANANGGAL_SPAWN_EGG.get());
                         pOutput.accept(ModItems.KAPRE_SPAWN_EGG.get());
                         pOutput.accept(ModItems.MANGKUKULAM_SPAWN_EGG.get());
+
+                        // weapons
+                        pOutput.accept(ModItems.KARAMBIT.get());
+                        pOutput.accept(ModItems.ARNIS.get());
+                        pOutput.accept(ModItems.BOLO.get());
+                        pOutput.accept(ModItems.KRISS.get());
+                        pOutput.accept(ModItems.SIBAT.get());
+                        pOutput.accept(ModItems.KALASAG.get());
+
                     })
                     .build());
     public static void register(IEventBus eventBus) {

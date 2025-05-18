@@ -1,0 +1,62 @@
+{
+	"credit": "Made with Blockbench",
+	"texture_size": [32, 32],
+	"textures": {
+		"0": "philmythmod:item/arnis_3d",
+		"particle": "philmythmod:item/arnis_3d"
+	},
+	"elements": [
+		{
+			"from": [6, 0, 7],
+			"to": [9, 25, 10],
+			"rotation": {"angle": 0, "axis": "y", "origin": [7, 9, 7]},
+			"faces": {
+				"north": {"uv": [0, 0, 2, 12.5], "texture": "#0"},
+				"east": {"uv": [2, 0, 4, 12.5], "texture": "#0"},
+				"south": {"uv": [4, 0, 6, 12.5], "texture": "#0"},
+				"west": {"uv": [6, 0, 8, 12.5], "texture": "#0"},
+				"up": {"uv": [10, 2, 8, 0], "texture": "#0"},
+				"down": {"uv": [10, 2, 8, 4], "texture": "#0"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"translation": [0.5, 1, 0],
+			"scale": [0.63, 0.72, 0.63]
+		},
+		"thirdperson_lefthand": {
+			"translation": [0, 1, 0],
+			"scale": [0.63, 0.72, 0.63]
+		},
+		"firstperson_righthand": {
+			"translation": [0, 3, 0],
+			"scale": [0.63, 0.72, 0.63]
+		},
+		"firstperson_lefthand": {
+			"translation": [0, 3.25, 0],
+			"scale": [0.63, 0.72, 0.63]
+		},
+		"ground": {
+			"translation": [0, 1, 0]
+		},
+		"gui": {
+			"rotation": [0, 0, -42],
+			"translation": [-2.5, -2.25, 3.73047],
+			"scale": [1, 0.69727, 1]
+		},
+		"fixed": {
+			"rotation": [0, 0, 47],
+			"translation": [3, -2.75, 0],
+			"scale": [1, 0.87, 1]
+		}
+	},
+	"groups": [
+		{
+			"name": "group",
+			"origin": [8, 8, 8],
+			"color": 0,
+			"children": [0]
+		}
+	]
+}

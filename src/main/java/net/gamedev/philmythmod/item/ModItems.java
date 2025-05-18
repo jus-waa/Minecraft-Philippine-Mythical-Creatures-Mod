@@ -4,6 +4,8 @@ import net.gamedev.philmythmod.PhilippineMythMod;
 import net.gamedev.philmythmod.entity.ModEntities;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.ShieldItem;
+import net.minecraft.world.item.SwordItem;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -47,6 +49,19 @@ public class ModItems {
     public static final RegistryObject<Item> MANGKUKULAM_SPAWN_EGG = ITEMS.register("mangkukulam_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntities.MANGKUKULAM, 0x7e9680, 0xc5d1c5,
                     new Item.Properties()));
+    // mooncore weapons
+    public static final RegistryObject<Item> KARAMBIT = ITEMS.register("karambit",
+            () -> new SwordItem(ModToolTiers.MOONCORE_SCALE, 1, -1F, new Item.Properties().fireResistant().setNoRepair()));
+    public static final RegistryObject<Item> SIBAT = ITEMS.register("sibat",
+            () -> new SwordItem(ModToolTiers.MOONCORE_SCALE, 3, -3.4F, new Item.Properties().fireResistant().setNoRepair()));
+    public static final RegistryObject<Item> KRISS = ITEMS.register("kriss",
+            () -> new SwordItem(ModToolTiers.MOONCORE_SCALE, 4, -2.4F, new Item.Properties().fireResistant().setNoRepair()));
+    public static final RegistryObject<Item> ARNIS = ITEMS.register("arnis",
+            () -> new SwordItem(ModToolTiers.MOONCORE_SCALE, 3, -2.8F, new Item.Properties().fireResistant().setNoRepair()));
+    public static final RegistryObject<Item> BOLO = ITEMS.register("bolo",
+            () -> new SwordItem(ModToolTiers.MOONCORE_SCALE, 4, -3F, new Item.Properties().fireResistant().setNoRepair()));
+    public static final RegistryObject<Item> KALASAG = ITEMS.register("kalasag",
+            () -> new ShieldItem(new Item.Properties().durability(1008).fireResistant().setNoRepair()));
     // reminder:
     // haliyas/' sword, shield, sarimanok spawn egg, and (all other spawn eggs)
     public static void register(IEventBus eventBus) {

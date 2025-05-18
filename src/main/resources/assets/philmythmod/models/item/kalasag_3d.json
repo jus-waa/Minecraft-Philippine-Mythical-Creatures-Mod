@@ -1,0 +1,105 @@
+{
+	"credit": "Made with Blockbench",
+	"texture_size": [64, 64],
+	"textures": {
+		"0": "philmythmod:item/kalasag_3d",
+		"particle": "philmythmod:item/kalasag_3d"
+	},
+	"elements": [
+		{
+			"from": [3, 0, 8],
+			"to": [13, 23, 9],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, -1, 8]},
+			"faces": {
+				"north": {"uv": [0, 0, 2.5, 5.75], "texture": "#0"},
+				"east": {"uv": [5, 0, 5.25, 5.75], "texture": "#0"},
+				"south": {"uv": [2.5, 0, 5, 5.75], "texture": "#0"},
+				"west": {"uv": [5.25, 0, 5.5, 5.75], "texture": "#0"},
+				"up": {"uv": [8.25, 5.5, 5.75, 5.25], "texture": "#0"},
+				"down": {"uv": [8.25, 5.5, 5.75, 5.75], "texture": "#0"}
+			}
+		},
+		{
+			"from": [2, 1, 8],
+			"to": [3, 22, 9],
+			"rotation": {"angle": 0, "axis": "y", "origin": [-2, -1, 8]},
+			"faces": {
+				"north": {"uv": [5.5, 0, 5.75, 5.25], "texture": "#0"},
+				"east": {"uv": [5.5, 5.25, 5.75, 10.5], "texture": "#missing"},
+				"south": {"uv": [0, 5.75, 0.25, 11], "texture": "#0"},
+				"west": {"uv": [5.75, 0, 6, 5.25], "texture": "#0"},
+				"up": {"uv": [3.5, 6, 3.25, 5.75], "texture": "#0"},
+				"down": {"uv": [3.75, 5.75, 3.5, 6], "texture": "#0"}
+			}
+		},
+		{
+			"from": [13, 1, 8],
+			"to": [14, 22, 9],
+			"rotation": {"angle": 0, "axis": "y", "origin": [9, -1, 8]},
+			"faces": {
+				"north": {"uv": [0.25, 5.75, 0.5, 11], "texture": "#0"},
+				"east": {"uv": [0.5, 5.75, 0.75, 11], "texture": "#0"},
+				"south": {"uv": [0.75, 5.75, 1, 11], "texture": "#0"},
+				"west": {"uv": [1, 5.75, 1.25, 11], "texture": "#missing"},
+				"up": {"uv": [4, 6, 3.75, 5.75], "texture": "#0"},
+				"down": {"uv": [4.25, 5.75, 4, 6], "texture": "#0"}
+			}
+		},
+		{
+			"from": [14, 2, 8],
+			"to": [15, 21, 9],
+			"rotation": {"angle": 0, "axis": "y", "origin": [10, -1, 8]},
+			"faces": {
+				"north": {"uv": [1.25, 5.75, 1.5, 10.5], "texture": "#0"},
+				"east": {"uv": [1.5, 5.75, 1.75, 10.5], "texture": "#0"},
+				"south": {"uv": [1.75, 5.75, 2, 10.5], "texture": "#0"},
+				"west": {"uv": [2, 5.75, 2.25, 10.5], "texture": "#missing"},
+				"up": {"uv": [4.5, 6, 4.25, 5.75], "texture": "#0"},
+				"down": {"uv": [4.75, 5.75, 4.5, 6], "texture": "#0"}
+			}
+		},
+		{
+			"from": [1, 2, 8],
+			"to": [2, 21, 9],
+			"rotation": {"angle": 0, "axis": "y", "origin": [-3, -1, 8]},
+			"faces": {
+				"north": {"uv": [2.25, 5.75, 2.5, 10.5], "texture": "#0"},
+				"east": {"uv": [2.5, 5.75, 2.75, 10.5], "texture": "#missing"},
+				"south": {"uv": [2.75, 5.75, 3, 10.5], "texture": "#0"},
+				"west": {"uv": [3, 5.75, 3.25, 10.5], "texture": "#0"},
+				"up": {"uv": [5, 6, 4.75, 5.75], "texture": "#0"},
+				"down": {"uv": [5.25, 5.75, 5, 6], "texture": "#0"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [54.5, 0, 0]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [54.5, 0, 0]
+		},
+		"firstperson_righthand": {
+			"translation": [2.25, -3.5, 0]
+		},
+		"firstperson_lefthand": {
+			"translation": [2.25, -3.5, 0]
+		},
+		"gui": {
+			"translation": [0.25, -2.25, 0],
+			"scale": [0.68164, 0.64258, 1]
+		},
+		"fixed": {
+			"translation": [0, -2.5, 0],
+			"scale": [0.7832, 0.72852, 1]
+		}
+	},
+	"groups": [
+		{
+			"name": "Kalasag",
+			"origin": [-3, -1, 8],
+			"color": 0,
+			"children": [0, 1, 2, 3, 4]
+		}
+	]
+}
