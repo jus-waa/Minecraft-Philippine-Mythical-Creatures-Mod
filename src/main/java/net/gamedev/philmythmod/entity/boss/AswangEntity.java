@@ -1,6 +1,7 @@
 package net.gamedev.philmythmod.entity.boss;
 
 import net.gamedev.philmythmod.entity.ModEntities;
+import net.gamedev.philmythmod.entity.ai.AswangAttackGoal;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -39,7 +40,7 @@ public class AswangEntity extends Monster {
     public final AnimationState deathAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
     public final AnimationState attackAnimationState = new AnimationState();
-    private int attackAnimationTimeout = 0;
+    public int attackAnimationTimeout = 0;
 
     @Override
     public void tick() {
@@ -123,12 +124,16 @@ public class AswangEntity extends Monster {
     //mob goals
     public void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.0D, true));
-        this.goalSelector.addGoal(4, new LookAtPlayerGoal(this, Player.class, 8.0F));
-        this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
-        this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 1.0D));
+        this.goalSelector.addGoal(1, new AswangAttackGoal(this, 1.0D, true));
+
+        this.goalSelector.addGoal(2, new LookAtPlayerGoal(this, Player.class, 8.0F));
+        this.goalSelector.addGoal(3, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(4, new WaterAvoidingRandomStrollGoal(this, 1.0D));
+
         this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setAlertOthers(ZombifiedPiglin.class));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, true));
+
     }
     // attributes
     public static AttributeSupplier.Builder createAttributes() {

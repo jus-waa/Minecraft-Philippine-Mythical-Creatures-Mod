@@ -112,7 +112,7 @@ public class AswangModel<T extends Entity> extends HierarchicalModel<T>   {
 		// animations
 		this.animate(((AswangEntity) entity).idleAnimationState, AswangAnimation.idle, ageInTicks, 1f);
 		this.animateWalk(AswangAnimation.walk, limbSwing, 1f, 2f, 2.5f);
-		this.animate(((AswangEntity) entity).deathAnimationState, MangkukulamAnimation.death, ageInTicks, 1f);
+		this.animate(((AswangEntity) entity).attackAnimationState, AswangAnimation.attack, ageInTicks, 1f);
 	}
 
 	private void applyHeadRotation(float pNetHeadYaw, float pHeadPitch, float pAgeInTicks) {

@@ -23,7 +23,7 @@ public class ModEntities {
                     .sized(25.0f, 25.0f).build("bakunawa"));
     public static final RegistryObject<EntityType<AswangEntity>> ASWANG =
             ENTITY_TYPES.register("aswang", () -> EntityType.Builder.of(AswangEntity::new, MobCategory.MONSTER)
-                    .sized(1.0f, 1.7f).build("aswang"));
+                    .sized(0.8f, 1.7f).build("aswang"));
     public static final RegistryObject<EntityType<ManananggalEntity>> MANANANGGAL =
             ENTITY_TYPES.register("manananggal", () -> EntityType.Builder.of(ManananggalEntity::new, MobCategory.MONSTER)
                     .sized(2f, 3.6f).build("manananggal"));
