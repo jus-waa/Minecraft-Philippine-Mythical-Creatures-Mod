@@ -1,7 +1,11 @@
 package net.gamedev.philmythmod.entity.boss;
 
+import net.gamedev.philmythmod.entity.ai.BakunawaAttackGoal;
 import net.gamedev.philmythmod.entity.ai.BakunawaSwimGoal;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
@@ -14,8 +18,8 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.world.entity.animal.WaterAnimal;
 import net.minecraft.world.entity.monster.Enemy;
+import net.minecraft.world.entity.monster.ZombifiedPiglin;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
@@ -24,12 +28,14 @@ import org.jetbrains.annotations.Nullable;
 import net.minecraft.world.phys.AABB;
 import java.util.function.Predicate;
 
-public class BakunawaBoss extends Mob implements Enemy {
+public class BakunawaBoss extends PathfinderMob implements Enemy {
     private final ServerBossEvent bossEvent = (ServerBossEvent)(new ServerBossEvent(Component.literal("Bakunawa"), BossEvent.BossBarColor.BLUE, BossEvent.BossBarOverlay.NOTCHED_20)).setDarkenScreen(true);
+    private static final EntityDataAccessor<Boolean> ATTACKING =
+            SynchedEntityData.defineId(BakunawaBoss.class, EntityDataSerializers.BOOLEAN);
     private static final Predicate<LivingEntity> LIVING_ENTITY_SELECTOR = (otherEntity) -> {
         return otherEntity.getMobType() != MobType.UNDEAD && otherEntity.attackable();
     };
-    public BakunawaBoss(EntityType<? extends Mob> pEntityType, Level pLevel) {
+    public BakunawaBoss(EntityType<? extends PathfinderMob> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
     }
 
@@ -38,15 +44,15 @@ public class BakunawaBoss extends Mob implements Enemy {
     public final AnimationState deathAnimationState = new AnimationState();
 
     private int idleAnimationTimeout = 0;
+    public final AnimationState attackAnimationState = new AnimationState();
+    public int attackAnimationTimeout = 0;
 
     @Override
     public void tick() {
         super.tick();
-
         if (this.isInWater()) {
             this.setPos(this.getX(), this.getY() + 0.05, this.getZ()); // small upward motion
         }
-
         if (this.level().isClientSide()) {
             setupAnimationStates();
         }
@@ -68,25 +74,55 @@ public class BakunawaBoss extends Mob implements Enemy {
             this.swimAnimationState.stop();
         }
 
-        // Death animation
-        if (this.getMaxHealth() <= 0) {
-            this.deathAnimationState.startIfStopped(this.tickCount);
+        // attack animation
+        if (this.isAttacking() && attackAnimationTimeout <= 0) {
+            attackAnimationTimeout = 84; // length in ticks of animation, depends on animation
+            attackAnimationState.start(this.tickCount);
         } else {
-            this.swimAnimationState.stop();
+            --this.attackAnimationTimeout;
+        }
+
+        //if no longer attacking
+        if (!this.isAttacking()) {
+            attackAnimationState.stop();
         }
     }
-
+    //die
+    @Override
+    public void die(DamageSource cause) {
+        super.die(cause);
+        if (this.level().isClientSide()) {
+            this.deathAnimationState.start(this.tickCount);
+        }
+    }
     @Override
     public void updateSwimming() {
         super.updateSwimming();
     }
 
+    //attacking
+    public void setAttacking(boolean attacking) {
+        this.entityData.set(ATTACKING, attacking);
+    }
+    public boolean isAttacking() {
+        return this.entityData.get(ATTACKING);
+    }
+    @Override
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(ATTACKING, false);
+    }
+
     @Override
     protected void registerGoals() {
+        this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, Player.class, true));
+        this.goalSelector.addGoal(1, new BakunawaAttackGoal(this, 1.0D, true));
+
+        this.goalSelector.addGoal(2, new BakunawaSwimGoal(this, 0.5D));
+        this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)).setAlertOthers(ZombifiedPiglin.class));
+
         this.goalSelector.addGoal(2, new LookAtPlayerGoal(this, Player.class, 10.0F));
         this.goalSelector.addGoal(3, new RandomLookAroundGoal(this));
-        this.goalSelector.addGoal(1, new BakunawaSwimGoal(this, 0.5D));
-        this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, Player.class, true));
     }
     public static AttributeSupplier.Builder createAttributes() {
         return Mob.createMobAttributes()

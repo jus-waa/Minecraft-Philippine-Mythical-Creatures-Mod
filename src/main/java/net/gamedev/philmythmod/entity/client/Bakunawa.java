@@ -2,7 +2,9 @@ package net.gamedev.philmythmod.entity.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.gamedev.philmythmod.entity.animations.AswangAnimation;
 import net.gamedev.philmythmod.entity.animations.BakunawaAnimations;
+import net.gamedev.philmythmod.entity.boss.AswangEntity;
 import net.gamedev.philmythmod.entity.boss.BakunawaBoss;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -847,6 +849,8 @@ public class Bakunawa<T extends Entity> extends HierarchicalModel<T>  {
 		this.animate(((BakunawaBoss) entity).idleAnimationState, BakunawaAnimations.idle, ageInTicks, 1f);
 		this.animate(((BakunawaBoss) entity).swimAnimationState, BakunawaAnimations.swim, ageInTicks, 2f);
 		this.animate(((BakunawaBoss) entity).deathAnimationState, BakunawaAnimations.death, ageInTicks, 0f);
+		this.animate(((BakunawaBoss) entity).attackAnimationState, BakunawaAnimations.attack, ageInTicks, 1f);
+
 	}
 
 	private void applyHeadRotation(float pNetHeadYaw, float pHeadPitch, float pAgeInTicks) {

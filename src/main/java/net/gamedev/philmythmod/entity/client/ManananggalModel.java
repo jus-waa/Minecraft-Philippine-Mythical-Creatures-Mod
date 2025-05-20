@@ -3,7 +3,9 @@ package net.gamedev.philmythmod.entity.client;// Made with Blockbench 4.12.4
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
+import net.gamedev.philmythmod.entity.animations.AswangAnimation;
 import net.gamedev.philmythmod.entity.animations.ManananggalAnimation;
+import net.gamedev.philmythmod.entity.boss.AswangEntity;
 import net.gamedev.philmythmod.entity.boss.ManananggalEntity;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -260,6 +262,8 @@ public class ManananggalModel<T extends Entity> extends HierarchicalModel<T> {
 		this.animate(((ManananggalEntity) entity).idleAnimationState, ManananggalAnimation.idle, ageInTicks, 1f);
 		this.animateWalk(ManananggalAnimation.idle, limbSwing, 1f, 2f, 2.5f);
 		this.animate(((ManananggalEntity) entity).deathAnimationState, ManananggalAnimation.death, ageInTicks, 1f);
+		this.animate(((ManananggalEntity) entity).attackAnimationState, ManananggalAnimation.attack, ageInTicks, 1f);
+
 	}
 
 	private void applyHeadRotation(float pNetHeadYaw, float pHeadPitch, float pAgeInTicks) {

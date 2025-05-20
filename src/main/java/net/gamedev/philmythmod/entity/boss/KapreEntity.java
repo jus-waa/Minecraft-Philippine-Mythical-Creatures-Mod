@@ -1,5 +1,9 @@
 package net.gamedev.philmythmod.entity.boss;
 
+import net.gamedev.philmythmod.entity.ai.KapreAttackGoal;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.TimeUtil;
@@ -22,6 +26,8 @@ import org.jetbrains.annotations.Nullable;
 import java.util.UUID;
 
 public class KapreEntity extends AbstractGolem implements NeutralMob {
+    private static final EntityDataAccessor<Boolean> ATTACKING =
+            SynchedEntityData.defineId(KapreEntity.class, EntityDataSerializers.BOOLEAN);
     private static final UniformInt PERSISTENT_ANGER_TIME = TimeUtil.rangeOfSeconds(20, 39);
     private int remainingPersistentAngerTime;
     @javax.annotation.Nullable
@@ -34,6 +40,8 @@ public class KapreEntity extends AbstractGolem implements NeutralMob {
     public final AnimationState deathAnimationState = new AnimationState();
 
     private int idleAnimationTimeout = 0;
+    public final AnimationState attackAnimationState = new AnimationState();
+    public int attackAnimationTimeout = 0;
 
     @Override
     public void tick() {
@@ -50,6 +58,18 @@ public class KapreEntity extends AbstractGolem implements NeutralMob {
             this.idleAnimationState.start(this.tickCount);
         } else {
             --this.idleAnimationTimeout;
+        }
+        // attack animation
+        if (this.isAttacking() && attackAnimationTimeout <= 0) {
+            attackAnimationTimeout = 84; // length in ticks of animation, depends on animation
+            attackAnimationState.start(this.tickCount);
+        } else {
+            --this.attackAnimationTimeout;
+        }
+
+        //if no longer attacking
+        if (!this.isAttacking()) {
+            attackAnimationState.stop();
         }
     }
     @Override
@@ -70,9 +90,21 @@ public class KapreEntity extends AbstractGolem implements NeutralMob {
 
         this.walkAnimation.update(f, 0.2f);
     }
+    //attacking
+    public void setAttacking(boolean attacking) {
+        this.entityData.set(ATTACKING, attacking);
+    }
+    public boolean isAttacking() {
+        return this.entityData.get(ATTACKING);
+    }
+    @Override
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(ATTACKING, false);
+    }
     public void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.0D, true));
+        this.goalSelector.addGoal(1, new KapreAttackGoal(this, 1.0D, true));
         this.goalSelector.addGoal(4, new WaterAvoidingRandomStrollGoal(this, 1.1D));
         this.goalSelector.addGoal(5, new LookAtPlayerGoal(this, Player.class, 3f));
         this.goalSelector.addGoal(6, new RandomLookAroundGoal(this));

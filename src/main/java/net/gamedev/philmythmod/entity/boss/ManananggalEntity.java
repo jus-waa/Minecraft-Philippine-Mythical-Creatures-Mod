@@ -1,6 +1,10 @@
 package net.gamedev.philmythmod.entity.boss;
 
+import net.gamedev.philmythmod.entity.ai.ManananggalAttackGoal;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
@@ -21,12 +25,16 @@ import net.minecraft.world.level.LightLayer;
 import org.jetbrains.annotations.Nullable;
 
 public class ManananggalEntity extends Monster {
+    private static final EntityDataAccessor<Boolean> ATTACKING =
+            SynchedEntityData.defineId(ManananggalEntity.class, EntityDataSerializers.BOOLEAN);
     public ManananggalEntity(EntityType<? extends Monster> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
     }
     public final AnimationState idleAnimationState = new AnimationState();
     public final AnimationState deathAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
+    public final AnimationState attackAnimationState = new AnimationState();
+    public int attackAnimationTimeout = 0;
 
     @Override
     public void tick() {
@@ -58,6 +66,18 @@ public class ManananggalEntity extends Monster {
         } else {
             --this.idleAnimationTimeout;
         }
+        // attack animation
+        if (this.isAttacking() && attackAnimationTimeout <= 0) {
+            attackAnimationTimeout = 84; // length in ticks of animation, depends on animation
+            attackAnimationState.start(this.tickCount);
+        } else {
+            --this.attackAnimationTimeout;
+        }
+
+        //if no longer attacking
+        if (!this.isAttacking()) {
+            attackAnimationState.stop();
+        }
     }
     @Override
     public void die(DamageSource cause) {
@@ -78,9 +98,21 @@ public class ManananggalEntity extends Monster {
 
         this.walkAnimation.update(f, 0.2f);
     }
+    //attacking
+    public void setAttacking(boolean attacking) {
+        this.entityData.set(ATTACKING, attacking);
+    }
+    public boolean isAttacking() {
+        return this.entityData.get(ATTACKING);
+    }
+    @Override
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(ATTACKING, false);
+    }
     public void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.0D, true));
+        this.goalSelector.addGoal(1, new ManananggalAttackGoal(this, 1.0D, true));
         this.goalSelector.addGoal(4, new LookAtPlayerGoal(this, Player.class, 8.0F));
         this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
         this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 1.0D));

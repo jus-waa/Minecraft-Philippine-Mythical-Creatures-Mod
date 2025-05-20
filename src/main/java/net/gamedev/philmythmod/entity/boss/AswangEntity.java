@@ -85,7 +85,7 @@ public class AswangEntity extends Monster {
         //if no longer attacking
         if (!this.isAttacking()) {
             attackAnimationState.stop();
-       }
+        }
     }
     //die
     @Override

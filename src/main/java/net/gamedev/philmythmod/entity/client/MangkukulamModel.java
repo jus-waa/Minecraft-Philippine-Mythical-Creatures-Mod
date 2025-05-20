@@ -3,7 +3,9 @@ package net.gamedev.philmythmod.entity.client;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
+import net.gamedev.philmythmod.entity.animations.AswangAnimation;
 import net.gamedev.philmythmod.entity.animations.MangkukulamAnimation;
+import net.gamedev.philmythmod.entity.boss.AswangEntity;
 import net.gamedev.philmythmod.entity.boss.MangkukulamEntity;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -112,6 +114,8 @@ public class MangkukulamModel<T extends Entity> extends HierarchicalModel<T> {
 		this.animate(((MangkukulamEntity) entity).idleAnimationState, MangkukulamAnimation.idle, ageInTicks, 1f);
 		this.animateWalk(MangkukulamAnimation.walk, limbSwing, 1f, 2f, 2.5f);
 		this.animate(((MangkukulamEntity) entity).deathAnimationState, MangkukulamAnimation.death, ageInTicks, 1f);
+		this.animate(((MangkukulamEntity) entity).attackAnimationState, MangkukulamAnimation.attack, ageInTicks, 1f);
+
 	}
 
 	private void applyHeadRotation(float pNetHeadYaw, float pHeadPitch, float pAgeInTicks) {
