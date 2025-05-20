@@ -4,7 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
 import net.gamedev.philmythmod.entity.animations.MangkukulamAnimation;
-import net.gamedev.philmythmod.entity.custom.MangkukulamEntity;
+import net.gamedev.philmythmod.entity.boss.MangkukulamEntity;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -110,7 +110,7 @@ public class MangkukulamModel<T extends Entity> extends HierarchicalModel<T> {
 
 		// animations
 		this.animate(((MangkukulamEntity) entity).idleAnimationState, MangkukulamAnimation.idle, ageInTicks, 1f);
-		this.animateWalk(MangkukulamAnimation.walk, limbSwing, limbSwingAmount, 2f, 2.5f);
+		this.animateWalk(MangkukulamAnimation.walk, limbSwing, 1f, 2f, 2.5f);
 		this.animate(((MangkukulamEntity) entity).deathAnimationState, MangkukulamAnimation.death, ageInTicks, 1f);
 	}
 

@@ -2,7 +2,7 @@ package net.gamedev.philmythmod.entity.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.gamedev.philmythmod.PhilippineMythMod;
-import net.gamedev.philmythmod.entity.custom.ManananggalEntity;
+import net.gamedev.philmythmod.entity.boss.ManananggalEntity;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;

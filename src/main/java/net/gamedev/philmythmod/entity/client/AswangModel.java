@@ -4,9 +4,9 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
 import net.gamedev.philmythmod.entity.animations.AswangAnimation;
-import net.gamedev.philmythmod.entity.animations.BakunawaAnimations;
-import net.gamedev.philmythmod.entity.boss.BakunawaBoss;
-import net.gamedev.philmythmod.entity.custom.AswangEntity;
+import net.gamedev.philmythmod.entity.animations.MangkukulamAnimation;
+import net.gamedev.philmythmod.entity.boss.AswangEntity;
+import net.gamedev.philmythmod.entity.boss.MangkukulamEntity;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -15,7 +15,6 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 
 public class AswangModel<T extends Entity> extends HierarchicalModel<T>   {
-	private final ModelPart hitbox;
 	private final ModelPart Aswang;
 	private final ModelPart head;
 	private final ModelPart tongue;
@@ -31,7 +30,6 @@ public class AswangModel<T extends Entity> extends HierarchicalModel<T>   {
 	private final ModelPart lowerRightArm;
 
 	public AswangModel(ModelPart root) {
-		this.hitbox = root.getChild("hitbox");
 		this.Aswang = root.getChild("Aswang");
 		this.head = this.Aswang.getChild("head");
 		this.tongue = this.head.getChild("tongue");
@@ -51,13 +49,13 @@ public class AswangModel<T extends Entity> extends HierarchicalModel<T>   {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
-		PartDefinition hitbox = partdefinition.addOrReplaceChild("hitbox", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -2.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 24.0F, 0.0F));
+		PartDefinition hitbox = partdefinition.addOrReplaceChild("hitbox", CubeListBuilder.create().texOffs(0, 2).addBox(-1.0F, -2.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 24.0F, 0.0F));
 
-		PartDefinition Aswang = partdefinition.addOrReplaceChild("Aswang", CubeListBuilder.create(), PartPose.offsetAndRotation(0.0F, 24.0F, -4.0F, 0.0F, 3.1416F, 0.0F));
+		PartDefinition Aswang = partdefinition.addOrReplaceChild("Aswang", CubeListBuilder.create(), PartPose.offsetAndRotation(1.0F, 24.0F, -5.0F, 0.0F, 3.1416F, 0.0F));
 
 		PartDefinition head = Aswang.addOrReplaceChild("head", CubeListBuilder.create(), PartPose.offset(0.0F, -17.0F, 3.0F));
 
-		PartDefinition head_r1 = head.addOrReplaceChild("head_r1", CubeListBuilder.create().texOffs(0, 14).addBox(-3.0F, -9.0F, -4.0F, 8.0F, 7.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, -4.0F, -0.1309F, 0.0F, 0.0F));
+		PartDefinition head_r1 = head.addOrReplaceChild("head_r1", CubeListBuilder.create().texOffs(0, 25).addBox(-3.0F, -9.0F, -4.0F, 8.0F, 7.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, -4.0F, -0.1309F, 0.0F, 0.0F));
 
 		PartDefinition tongue = head.addOrReplaceChild("tongue", CubeListBuilder.create().texOffs(34, 21).addBox(0.0F, -4.0F, 2.0F, 2.0F, 1.0F, 2.0F, new CubeDeformation(0.0F))
 		.texOffs(24, 39).addBox(0.0F, -4.0F, 4.0F, 2.0F, 5.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, -4.0F));
@@ -83,14 +81,14 @@ public class AswangModel<T extends Entity> extends HierarchicalModel<T>   {
 
 		PartDefinition legRight = body.addOrReplaceChild("legRight", CubeListBuilder.create(), PartPose.offsetAndRotation(4.0F, -10.0F, -7.0F, 0.3054F, 0.0F, 0.0F));
 
-		PartDefinition cube_r6 = legRight.addOrReplaceChild("cube_r6", CubeListBuilder.create().texOffs(30, 35).addBox(-1.0F, -4.0F, -3.0F, 3.0F, 7.0F, 3.0F, new CubeDeformation(-0.02F)), PartPose.offsetAndRotation(-1.0F, 0.0F, 1.0F, 0.4363F, 0.0F, 0.0F));
+		PartDefinition cube_r6 = legRight.addOrReplaceChild("cube_r6", CubeListBuilder.create().texOffs(34, 11).addBox(-1.0F, -4.0F, -3.0F, 3.0F, 7.0F, 3.0F, new CubeDeformation(-0.02F)), PartPose.offsetAndRotation(-1.0F, 0.0F, 1.0F, 0.4363F, 0.0F, 0.0F));
 
 		PartDefinition lowerRightLeg = legRight.addOrReplaceChild("lowerRightLeg", CubeListBuilder.create().texOffs(0, 46).addBox(-2.0F, 5.0F, 1.0F, 3.0F, 2.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 3.0F, -1.0F, -0.2618F, 0.0F, 0.0F));
 
 		PartDefinition cube_r7 = lowerRightLeg.addOrReplaceChild("cube_r7", CubeListBuilder.create().texOffs(14, 50).addBox(-2.0F, -1.0F, -2.0F, 3.0F, 6.0F, 2.0F, new CubeDeformation(-0.05F)), PartPose.offsetAndRotation(0.0F, 0.0F, 3.0F, 0.1309F, 0.0F, 0.0F));
 
 		PartDefinition armLeft = body.addOrReplaceChild("armLeft", CubeListBuilder.create().texOffs(0, 39).addBox(-4.0F, -2.0F, -2.0F, 4.0F, 4.0F, 3.0F, new CubeDeformation(0.0F))
-		.texOffs(12, 22).addBox(-2.0F, 2.0F, -2.0F, 2.0F, 3.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(8.0F, -17.0F, -8.0F, -0.4363F, 0.0F, 0.0F));
+		.texOffs(46, 19).addBox(-2.0F, 2.0F, -2.0F, 2.0F, 3.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(8.0F, -17.0F, -8.0F, -0.4363F, 0.0F, 0.0F));
 
 		PartDefinition lowerLeftArm = armLeft.addOrReplaceChild("lowerLeftArm", CubeListBuilder.create(), PartPose.offset(4.0F, 17.0F, 8.0F));
 
@@ -113,8 +111,8 @@ public class AswangModel<T extends Entity> extends HierarchicalModel<T>   {
 
 		// animations
 		this.animate(((AswangEntity) entity).idleAnimationState, AswangAnimation.idle, ageInTicks, 1f);
-		this.animateWalk(AswangAnimation.walk, limbSwing, limbSwingAmount, 2f, 2.5f);
-		this.animate(((AswangEntity) entity).deathAnimationState, AswangAnimation.death, ageInTicks, 1f);
+		this.animateWalk(AswangAnimation.walk, limbSwing, 1f, 2f, 2.5f);
+		this.animate(((AswangEntity) entity).deathAnimationState, MangkukulamAnimation.death, ageInTicks, 1f);
 	}
 
 	private void applyHeadRotation(float pNetHeadYaw, float pHeadPitch, float pAgeInTicks) {
@@ -126,7 +124,6 @@ public class AswangModel<T extends Entity> extends HierarchicalModel<T>   {
 	}
 	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-		hitbox.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
 		Aswang.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
 	}
 

@@ -1,5 +1,6 @@
-package net.gamedev.philmythmod.entity.custom;
+package net.gamedev.philmythmod.entity.boss;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
@@ -8,16 +9,15 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
-import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
-import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
+import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.ZombifiedPiglin;
-import net.minecraft.world.entity.npc.AbstractVillager;
+
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LightLayer;
 import org.jetbrains.annotations.Nullable;
 
 public class ManananggalEntity extends Monster {
@@ -34,6 +34,20 @@ public class ManananggalEntity extends Monster {
         if (this.level().isClientSide()) {
             setupAnimationStates();
         }
+        if (!this.level().isClientSide() && this.isAlive()) {
+            boolean isDay = this.level().isDay();
+            BlockPos pos = this.blockPosition();
+            boolean canSeeSky = this.level().canSeeSky(pos);
+            float skyBrightness = this.level().getBrightness(LightLayer.SKY, pos);
+
+            if (isDay && canSeeSky && !this.isInWaterRainOrBubble()) {
+                // Mimic vanilla random chance to catch fire
+                float chance = (skyBrightness - 0.4F) * 2.0F;
+                if (skyBrightness > 0.5F && this.random.nextFloat() * 30.0F < chance) {
+                    this.setSecondsOnFire(8);
+                }
+            }
+        }
     }
 
     private void setupAnimationStates() {
@@ -44,12 +58,12 @@ public class ManananggalEntity extends Monster {
         } else {
             --this.idleAnimationTimeout;
         }
-
-        // Death animation
-        if (this.getMaxHealth() <= 0) {
-            this.deathAnimationState.startIfStopped(this.tickCount);
-        } else {
-            this.idleAnimationState.stop();
+    }
+    @Override
+    public void die(DamageSource cause) {
+        super.die(cause);
+        if (this.level().isClientSide()) {
+            this.deathAnimationState.start(this.tickCount);
         }
     }
 
@@ -65,13 +79,13 @@ public class ManananggalEntity extends Monster {
         this.walkAnimation.update(f, 0.2f);
     }
     public void registerGoals() {
-        this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 8.0F));
-        this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
-        this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, Player.class, true));
-        this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.0D));
+        this.goalSelector.addGoal(0, new FloatGoal(this));
+        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.0D, true));
+        this.goalSelector.addGoal(4, new LookAtPlayerGoal(this, Player.class, 8.0F));
+        this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 1.0D));
         this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setAlertOthers(ZombifiedPiglin.class));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, false));
     }
     public static AttributeSupplier.Builder createAttributes() {
         return Monster.createMonsterAttributes()

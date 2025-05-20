@@ -279,12 +279,12 @@
 			"scale": [0.25, 0.25, 0.5]
 		},
 		"firstperson_righthand": {
-			"rotation": [0, -90, 180],
-			"translation": [5.5, 0.75, 0]
+			"rotation": [180, -90, 180],
+			"translation": [2.25, -20, 0]
 		},
 		"firstperson_lefthand": {
-			"rotation": [0, 90, 180],
-			"translation": [4.5, 0.75, 0]
+			"rotation": [180, 90, 180],
+			"translation": [2.25, -20, 0]
 		},
 		"gui": {
 			"rotation": [-180, 0, -134],

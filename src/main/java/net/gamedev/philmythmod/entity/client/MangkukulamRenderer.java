@@ -2,7 +2,7 @@ package net.gamedev.philmythmod.entity.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.gamedev.philmythmod.PhilippineMythMod;
-import net.gamedev.philmythmod.entity.custom.MangkukulamEntity;
+import net.gamedev.philmythmod.entity.boss.MangkukulamEntity;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
@@ -10,7 +10,7 @@ import net.minecraft.resources.ResourceLocation;
 
 public class MangkukulamRenderer extends MobRenderer<MangkukulamEntity, MangkukulamModel<MangkukulamEntity>> {
     public MangkukulamRenderer(EntityRendererProvider.Context pContext) {
-        super(pContext, new MangkukulamModel<>(pContext.bakeLayer(ModModelLayers.MANGKUKULAM_LAYER)), 1f);
+        super(pContext, new MangkukulamModel<>(pContext.bakeLayer(ModModelLayers.MANGKUKULAM_LAYER)), 0.5f);
     }
 
     @Override

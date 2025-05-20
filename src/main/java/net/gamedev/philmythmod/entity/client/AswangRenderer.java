@@ -2,7 +2,7 @@ package net.gamedev.philmythmod.entity.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.gamedev.philmythmod.PhilippineMythMod;
-import net.gamedev.philmythmod.entity.custom.AswangEntity;
+import net.gamedev.philmythmod.entity.boss.AswangEntity;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
@@ -10,7 +10,7 @@ import net.minecraft.resources.ResourceLocation;
 
 public class AswangRenderer extends MobRenderer<AswangEntity, AswangModel<AswangEntity>> {
     public AswangRenderer(EntityRendererProvider.Context pContext) {
-        super(pContext, new AswangModel<>(pContext.bakeLayer(ModModelLayers.ASWANG_LAYER)), 1f);
+        super(pContext, new AswangModel<>(pContext.bakeLayer(ModModelLayers.ASWANG_LAYER)), 0.5f);
     }
 
     @Override

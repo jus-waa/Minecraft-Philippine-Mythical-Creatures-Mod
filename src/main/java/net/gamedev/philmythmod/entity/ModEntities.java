@@ -2,10 +2,10 @@ package net.gamedev.philmythmod.entity;
 
 import net.gamedev.philmythmod.PhilippineMythMod;
 import net.gamedev.philmythmod.entity.boss.BakunawaBoss;
-import net.gamedev.philmythmod.entity.custom.AswangEntity;
-import net.gamedev.philmythmod.entity.custom.KapreEntity;
-import net.gamedev.philmythmod.entity.custom.ManananggalEntity;
-import net.gamedev.philmythmod.entity.custom.MangkukulamEntity;
+import net.gamedev.philmythmod.entity.boss.AswangEntity;
+import net.gamedev.philmythmod.entity.boss.KapreEntity;
+import net.gamedev.philmythmod.entity.boss.ManananggalEntity;
+import net.gamedev.philmythmod.entity.boss.MangkukulamEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -26,10 +26,10 @@ public class ModEntities {
                     .sized(1.0f, 1.7f).build("aswang"));
     public static final RegistryObject<EntityType<ManananggalEntity>> MANANANGGAL =
             ENTITY_TYPES.register("manananggal", () -> EntityType.Builder.of(ManananggalEntity::new, MobCategory.MONSTER)
-                    .sized(3.2f, 3.6f).build("manananggal"));
+                    .sized(2f, 3.6f).build("manananggal"));
     public static final RegistryObject<EntityType<KapreEntity>> KAPRE =
             ENTITY_TYPES.register("kapre", () -> EntityType.Builder.of(KapreEntity::new, MobCategory.MONSTER)
-                    .sized(3.0f, 5.4f).build("kapre"));
+                    .sized(2.5f, 5.4f).build("kapre"));
     public static final RegistryObject<EntityType<MangkukulamEntity>> MANGKUKULAM =
             ENTITY_TYPES.register("mangkukulam", () -> EntityType.Builder.of(MangkukulamEntity::new, MobCategory.MONSTER)
                     .sized(1.0f, 2.0f).build("mangkukulam"));

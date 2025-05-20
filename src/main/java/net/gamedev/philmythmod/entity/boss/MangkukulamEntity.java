@@ -1,4 +1,4 @@
-package net.gamedev.philmythmod.entity.custom;
+package net.gamedev.philmythmod.entity.boss;
 
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -7,8 +7,12 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.RangedAttackMob;
+import net.minecraft.world.entity.monster.ZombifiedPiglin;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ThrownPotion;
 import net.minecraft.world.entity.raid.Raider;
@@ -46,15 +50,14 @@ public class MangkukulamEntity extends Raider implements RangedAttackMob {
         } else {
             --this.idleAnimationTimeout;
         }
-
-        // Death animation
-        if (this.getMaxHealth() <= 0) {
-            this.deathAnimationState.startIfStopped(this.tickCount);
-        } else {
-            this.idleAnimationState.stop();
+    }
+    @Override
+    public void die(DamageSource cause) {
+        super.die(cause);
+        if (this.level().isClientSide()) {
+            this.deathAnimationState.start(this.tickCount);
         }
     }
-
     @Override
     protected void updateWalkAnimation(float pPartialTick) {
         float f;
@@ -71,7 +74,15 @@ public class MangkukulamEntity extends Raider implements RangedAttackMob {
                 .add(Attributes.MAX_HEALTH, 30.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.25D);
     }
-
+    public void registerGoals() {
+        this.goalSelector.addGoal(0, new FloatGoal(this));
+        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.0D, true));
+        this.goalSelector.addGoal(4, new LookAtPlayerGoal(this, Player.class, 8.0F));
+        this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 1.0D));
+        this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setAlertOthers(ZombifiedPiglin.class));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
+    }
     @Override
     public void performRangedAttack(LivingEntity pTarget, float pDistanceFactor) {
         if (this.isDrinking()) {

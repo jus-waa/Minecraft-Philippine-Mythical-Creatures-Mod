@@ -53,7 +53,7 @@ public class ModItems {
     public static final RegistryObject<Item> KARAMBIT = ITEMS.register("karambit",
             () -> new SwordItem(ModToolTiers.MOONCORE_SCALE, 1, -1F, new Item.Properties().fireResistant().setNoRepair()));
     public static final RegistryObject<Item> SIBAT = ITEMS.register("sibat",
-            () -> new SwordItem(ModToolTiers.MOONCORE_SCALE, 3, -3.4F, new Item.Properties().fireResistant().setNoRepair()));
+            () -> new SwordItem(ModToolTiers.MOONCORE_SCALE, 5, -3.4F, new Item.Properties().fireResistant().setNoRepair()));
     public static final RegistryObject<Item> KRISS = ITEMS.register("kriss",
             () -> new SwordItem(ModToolTiers.MOONCORE_SCALE, 4, -2.4F, new Item.Properties().fireResistant().setNoRepair()));
     public static final RegistryObject<Item> ARNIS = ITEMS.register("arnis",
