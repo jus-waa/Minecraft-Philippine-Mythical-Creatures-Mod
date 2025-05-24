@@ -2,9 +2,7 @@ package net.gamedev.philmythmod.entity.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.gamedev.philmythmod.entity.animations.AswangAnimation;
 import net.gamedev.philmythmod.entity.animations.BakunawaAnimations;
-import net.gamedev.philmythmod.entity.boss.AswangEntity;
 import net.gamedev.philmythmod.entity.boss.BakunawaBoss;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -14,9 +12,8 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 
 public class Bakunawa<T extends Entity> extends HierarchicalModel<T>  {
-
 	private final ModelPart bakunawa;
-	private ModelPart head;
+	private final ModelPart head;
 	private final ModelPart h_head;
 	private final ModelPart maincheeks;
 	private final ModelPart beak_like;
@@ -83,16 +80,16 @@ public class Bakunawa<T extends Entity> extends HierarchicalModel<T>  {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
-		PartDefinition bakunawa = partdefinition.addOrReplaceChild("bakunawa", CubeListBuilder.create(), PartPose.offset(0.0F, 4.0F, -591.0F));
+		PartDefinition bakunawa = partdefinition.addOrReplaceChild("bakunawa", CubeListBuilder.create(), PartPose.offset(6.0F, -480.0F, -96.0F));
 
-		PartDefinition head = bakunawa.addOrReplaceChild("head", CubeListBuilder.create(), PartPose.offset(0.0F, -11.0456F, 6.6047F));
+		PartDefinition head = bakunawa.addOrReplaceChild("head", CubeListBuilder.create(), PartPose.offset(-6.0F, 472.9544F, -488.3953F));
 
 		PartDefinition h_head = head.addOrReplaceChild("h_head", CubeListBuilder.create().texOffs(1174, 1357).addBox(-9.3536F, 0.7857F, -91.4376F, 13.0F, 14.0F, 65.0F, new CubeDeformation(0.4F)), PartPose.offset(2.5053F, -6.6909F, 39.8818F));
 
 		PartDefinition leftcheeksface_r1 = h_head.addOrReplaceChild("leftcheeksface_r1", CubeListBuilder.create().texOffs(489, 1588).mirror().addBox(-4.5654F, -9.4919F, -23.2833F, 9.0F, 20.0F, 50.0F, new CubeDeformation(0.4F)).mirror(false), PartPose.offsetAndRotation(-33.0791F, 7.8677F, 4.591F, 0.1332F, -0.2608F, -0.0117F));
 
 		PartDefinition leftcheeksface_r2 = h_head.addOrReplaceChild("leftcheeksface_r2", CubeListBuilder.create().texOffs(160, 1368).mirror().addBox(-6.4399F, -16.7758F, -27.2884F, 12.0F, 32.0F, 30.0F, new CubeDeformation(0.4F)).mirror(false)
-		.texOffs(160, 1369).addBox(38.5875F, -16.7758F, -27.2884F, 12.0F, 32.0F, 30.0F, new CubeDeformation(0.4F)), PartPose.offsetAndRotation(-25.3291F, 34.8677F, -4.909F, -1.6581F, 0.0F, 0.0F));
+				.texOffs(160, 1369).addBox(38.5875F, -16.7758F, -27.2884F, 12.0F, 32.0F, 30.0F, new CubeDeformation(0.4F)), PartPose.offsetAndRotation(-25.3291F, 34.8677F, -4.909F, -1.6581F, 0.0F, 0.0F));
 
 		PartDefinition leftcheeksface_r3 = h_head.addOrReplaceChild("leftcheeksface_r3", CubeListBuilder.create().texOffs(696, 1511).mirror().addBox(-5.6504F, -16.4447F, -24.7092F, 9.0F, 23.0F, 53.0F, new CubeDeformation(0.4F)).mirror(false), PartPose.offsetAndRotation(-33.0791F, 7.8677F, 4.591F, 0.3077F, -0.2608F, -0.0117F));
 
@@ -195,9 +192,9 @@ public class Bakunawa<T extends Entity> extends HierarchicalModel<T>  {
 		PartDefinition lowernose_r1 = beak_like.addOrReplaceChild("lowernose_r1", CubeListBuilder.create().texOffs(1280, 348).addBox(-13.0F, -6.5F, -5.5F, 26.0F, 13.0F, 11.0F, new CubeDeformation(0.15F)), PartPose.offsetAndRotation(-3.7334F, 12.2139F, 15.7882F, -0.829F, 0.0F, 0.0F));
 
 		PartDefinition teeth = h_head.addOrReplaceChild("teeth", CubeListBuilder.create().texOffs(1602, 1119).addBox(13.0F, 7.5F, 19.5F, 0.0F, 6.0F, 3.0F, new CubeDeformation(0.0F))
-		.texOffs(1602, 1119).addBox(13.0F, 7.5F, 24.5F, 0.0F, 6.0F, 3.0F, new CubeDeformation(0.0F))
-		.texOffs(1602, 1119).addBox(6.0F, 11.5F, 13.5F, 0.0F, 6.0F, 3.0F, new CubeDeformation(0.0F))
-		.texOffs(1602, 1119).mirror().addBox(-10.0106F, 11.5F, 13.5F, 0.0F, 6.0F, 3.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(-1.0F, 10.5F, -114.5F));
+				.texOffs(1602, 1119).addBox(13.0F, 7.5F, 24.5F, 0.0F, 6.0F, 3.0F, new CubeDeformation(0.0F))
+				.texOffs(1602, 1119).addBox(6.0F, 11.5F, 13.5F, 0.0F, 6.0F, 3.0F, new CubeDeformation(0.0F))
+				.texOffs(1602, 1119).mirror().addBox(-10.0106F, 11.5F, 13.5F, 0.0F, 6.0F, 3.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(-1.0F, 10.5F, -114.5F));
 
 		PartDefinition cube_r5 = teeth.addOrReplaceChild("cube_r5", CubeListBuilder.create().texOffs(1602, 1119).addBox(0.0F, -2.25F, -2.0F, 0.0F, 6.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(21.0F, 9.75F, 59.5F, 0.0F, 0.1309F, 0.0F));
 
@@ -232,14 +229,14 @@ public class Bakunawa<T extends Entity> extends HierarchicalModel<T>  {
 		PartDefinition cube_r20 = teeth.addOrReplaceChild("cube_r20", CubeListBuilder.create().texOffs(1602, 1119).addBox(0.0F, -2.25F, -2.0F, 0.0F, 6.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(17.0F, 9.75F, 31.5F, 0.0F, 0.1309F, 0.0F));
 
 		PartDefinition cube_r21 = teeth.addOrReplaceChild("cube_r21", CubeListBuilder.create().texOffs(1602, 1119).mirror().addBox(0.0F, -2.5F, -1.5F, 0.0F, 5.0F, 3.0F, new CubeDeformation(0.0F)).mirror(false)
-		.texOffs(1602, 1119).addBox(16.0106F, -2.5F, -1.5F, 0.0F, 5.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-10.0106F, 13.0F, 16.0F, -1.5708F, 0.0F, 0.0F));
+				.texOffs(1602, 1119).addBox(16.0106F, -2.5F, -1.5F, 0.0F, 5.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-10.0106F, 13.0F, 16.0F, -1.5708F, 0.0F, 0.0F));
 
 		PartDefinition cube_r22 = teeth.addOrReplaceChild("cube_r22", CubeListBuilder.create().texOffs(1602, 1119).addBox(0.0F, -2.5F, -1.5F, 0.0F, 5.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(13.0F, 9.0F, 27.0F, -1.5708F, 0.0F, 0.0F));
 
 		PartDefinition cube_r23 = teeth.addOrReplaceChild("cube_r23", CubeListBuilder.create().texOffs(1602, 1119).addBox(0.0F, -2.5F, -1.5F, 0.0F, 5.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(13.0F, 9.0F, 22.0F, -1.5708F, 0.0F, 0.0F));
 
 		PartDefinition teeth2 = h_head.addOrReplaceChild("teeth2", CubeListBuilder.create().texOffs(1602, 1119).mirror().addBox(-13.0F, 7.5F, 19.5F, 0.0F, 6.0F, 3.0F, new CubeDeformation(0.0F)).mirror(false)
-		.texOffs(1602, 1119).mirror().addBox(-13.0F, 7.5F, 24.5F, 0.0F, 6.0F, 3.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(-6.0106F, 10.5F, -114.5F));
+				.texOffs(1602, 1119).mirror().addBox(-13.0F, 7.5F, 24.5F, 0.0F, 6.0F, 3.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(-6.0106F, 10.5F, -114.5F));
 
 		PartDefinition cube_r24 = teeth2.addOrReplaceChild("cube_r24", CubeListBuilder.create().texOffs(1602, 1119).mirror().addBox(0.0F, -2.25F, -2.0F, 0.0F, 6.0F, 3.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(-21.0F, 9.75F, 59.5F, 0.0F, -0.1309F, 0.0F));
 
@@ -280,7 +277,7 @@ public class Bakunawa<T extends Entity> extends HierarchicalModel<T>  {
 		PartDefinition tentupperface = h_head.addOrReplaceChild("tentupperface", CubeListBuilder.create(), PartPose.offset(46.1959F, 19.1582F, -30.8973F));
 
 		PartDefinition lowerlip_r1 = tentupperface.addOrReplaceChild("lowerlip_r1", CubeListBuilder.create().texOffs(809, 1505).addBox(-2.6651F, -97.7802F, -16.4039F, 3.0F, 51.0F, 3.0F, new CubeDeformation(-1.0F))
-		.texOffs(809, 1505).addBox(-2.7441F, -49.2104F, -16.5561F, 3.0F, 51.0F, 3.0F, new CubeDeformation(-0.9F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, -1.2576F, 0.2316F, 1.4256F));
+				.texOffs(809, 1505).addBox(-2.7441F, -49.2104F, -16.5561F, 3.0F, 51.0F, 3.0F, new CubeDeformation(-0.9F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, -1.2576F, 0.2316F, 1.4256F));
 
 		PartDefinition lowerlip_r2 = tentupperface.addOrReplaceChild("lowerlip_r2", CubeListBuilder.create().texOffs(809, 1505).addBox(-2.5515F, -2.4444F, -16.7405F, 3.0F, 35.0F, 3.0F, new CubeDeformation(-0.5F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, -1.1267F, 0.2316F, 1.4256F));
 
@@ -293,7 +290,7 @@ public class Bakunawa<T extends Entity> extends HierarchicalModel<T>  {
 		PartDefinition tentupperface2 = h_head.addOrReplaceChild("tentupperface2", CubeListBuilder.create(), PartPose.offset(-51.2065F, 19.1582F, -30.8973F));
 
 		PartDefinition lowerlip_r6 = tentupperface2.addOrReplaceChild("lowerlip_r6", CubeListBuilder.create().texOffs(809, 1505).mirror().addBox(-0.3349F, -97.7802F, -16.4039F, 3.0F, 51.0F, 3.0F, new CubeDeformation(-1.0F)).mirror(false)
-		.texOffs(809, 1505).mirror().addBox(-0.2559F, -49.2104F, -16.5561F, 3.0F, 51.0F, 3.0F, new CubeDeformation(-0.9F)).mirror(false), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, -1.2576F, -0.2316F, -1.4256F));
+				.texOffs(809, 1505).mirror().addBox(-0.2559F, -49.2104F, -16.5561F, 3.0F, 51.0F, 3.0F, new CubeDeformation(-0.9F)).mirror(false), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, -1.2576F, -0.2316F, -1.4256F));
 
 		PartDefinition lowerlip_r7 = tentupperface2.addOrReplaceChild("lowerlip_r7", CubeListBuilder.create().texOffs(809, 1505).mirror().addBox(-0.4485F, -2.4444F, -16.7405F, 3.0F, 35.0F, 3.0F, new CubeDeformation(-0.5F)).mirror(false), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, -1.1267F, -0.2316F, -1.4256F));
 
@@ -336,24 +333,24 @@ public class Bakunawa<T extends Entity> extends HierarchicalModel<T>  {
 		PartDefinition hornleft9_r1 = horn.addOrReplaceChild("hornleft9_r1", CubeListBuilder.create().texOffs(1646, 1318).addBox(-14.8074F, -5.9883F, -4.8275F, 23.0F, 16.0F, 9.0F, new CubeDeformation(0.3F)), PartPose.offsetAndRotation(-32.3909F, 45.4832F, -19.1849F, -1.9736F, 1.1981F, -0.5508F));
 
 		PartDefinition hornleft10_r1 = horn.addOrReplaceChild("hornleft10_r1", CubeListBuilder.create().texOffs(1654, 536).addBox(-22.823F, 5.9042F, -3.271F, 20.0F, 6.0F, 6.0F, new CubeDeformation(0.0F))
-		.texOffs(1622, 1368).addBox(-31.7157F, -0.6562F, -3.7118F, 20.0F, 9.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-32.3909F, 45.4832F, -19.1849F, -2.0227F, 1.2379F, -0.6032F));
+				.texOffs(1622, 1368).addBox(-31.7157F, -0.6562F, -3.7118F, 20.0F, 9.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-32.3909F, 45.4832F, -19.1849F, -2.0227F, 1.2379F, -0.6032F));
 
 		PartDefinition hornleft9_r2 = horn.addOrReplaceChild("hornleft9_r2", CubeListBuilder.create().texOffs(1646, 1398).addBox(-31.7157F, -0.6562F, -3.7118F, 20.0F, 9.0F, 6.0F, new CubeDeformation(0.0F))
-		.texOffs(618, 1649).addBox(-22.823F, 5.9042F, -3.271F, 20.0F, 6.0F, 6.0F, new CubeDeformation(0.0F))
-		.texOffs(1644, 607).addBox(10.8423F, -14.0507F, -4.8915F, 23.0F, 16.0F, 12.0F, new CubeDeformation(0.3F))
-		.texOffs(1644, 635).addBox(8.4855F, -9.7464F, -5.1005F, 23.0F, 16.0F, 12.0F, new CubeDeformation(0.3F)), PartPose.offsetAndRotation(-47.1409F, 24.2332F, 0.0651F, -0.998F, 1.2768F, 0.3796F));
+				.texOffs(618, 1649).addBox(-22.823F, 5.9042F, -3.271F, 20.0F, 6.0F, 6.0F, new CubeDeformation(0.0F))
+				.texOffs(1644, 607).addBox(10.8423F, -14.0507F, -4.8915F, 23.0F, 16.0F, 12.0F, new CubeDeformation(0.3F))
+				.texOffs(1644, 635).addBox(8.4855F, -9.7464F, -5.1005F, 23.0F, 16.0F, 12.0F, new CubeDeformation(0.3F)), PartPose.offsetAndRotation(-47.1409F, 24.2332F, 0.0651F, -0.998F, 1.2768F, 0.3796F));
 
 		PartDefinition hornleft8_r4 = horn.addOrReplaceChild("hornleft8_r4", CubeListBuilder.create().texOffs(1646, 1293).addBox(-14.8074F, -5.9883F, -4.8275F, 23.0F, 16.0F, 9.0F, new CubeDeformation(0.3F)), PartPose.offsetAndRotation(-47.1409F, 24.2332F, 0.0651F, -1.0672F, 1.2393F, 0.3069F));
 
 		PartDefinition hornleft6_r4 = horn.addOrReplaceChild("hornleft6_r4", CubeListBuilder.create().texOffs(1644, 551).addBox(10.8423F, -14.0507F, -4.8915F, 23.0F, 16.0F, 12.0F, new CubeDeformation(0.3F))
-		.texOffs(1644, 579).addBox(8.4855F, -9.7464F, -5.1005F, 23.0F, 16.0F, 12.0F, new CubeDeformation(0.3F))
-		.texOffs(1653, 507).addBox(-22.823F, 5.9042F, -3.271F, 20.0F, 6.0F, 6.0F, new CubeDeformation(0.0F))
-		.texOffs(1646, 1428).addBox(-31.7157F, -0.6562F, -3.7118F, 20.0F, 9.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-47.1409F, -5.7668F, 5.0651F, -0.4883F, 1.1461F, 0.859F));
+				.texOffs(1644, 579).addBox(8.4855F, -9.7464F, -5.1005F, 23.0F, 16.0F, 12.0F, new CubeDeformation(0.3F))
+				.texOffs(1653, 507).addBox(-22.823F, 5.9042F, -3.271F, 20.0F, 6.0F, 6.0F, new CubeDeformation(0.0F))
+				.texOffs(1646, 1428).addBox(-31.7157F, -0.6562F, -3.7118F, 20.0F, 9.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-47.1409F, -5.7668F, 5.0651F, -0.4883F, 1.1461F, 0.859F));
 
 		PartDefinition hornleft7_r5 = horn.addOrReplaceChild("hornleft7_r5", CubeListBuilder.create().texOffs(1646, 1268).addBox(-14.8074F, -5.9883F, -4.8275F, 23.0F, 16.0F, 9.0F, new CubeDeformation(0.3F)), PartPose.offsetAndRotation(-47.1409F, -5.7668F, 5.0651F, -0.5693F, 1.1241F, 0.7697F));
 
 		PartDefinition hornleft9_r3 = horn.addOrReplaceChild("hornleft9_r3", CubeListBuilder.create().texOffs(1646, 1383).addBox(-31.7157F, -0.6562F, -3.7118F, 20.0F, 9.0F, 6.0F, new CubeDeformation(0.0F))
-		.texOffs(52, 1648).addBox(-22.823F, 5.9042F, -3.271F, 20.0F, 6.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-47.1409F, -23.5168F, -0.9349F, -0.4883F, 1.1461F, 0.859F));
+				.texOffs(52, 1648).addBox(-22.823F, 5.9042F, -3.271F, 20.0F, 6.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-47.1409F, -23.5168F, -0.9349F, -0.4883F, 1.1461F, 0.859F));
 
 		PartDefinition hornleft8_r5 = horn.addOrReplaceChild("hornleft8_r5", CubeListBuilder.create().texOffs(1646, 1243).addBox(-14.8074F, -5.9883F, -4.8275F, 23.0F, 16.0F, 9.0F, new CubeDeformation(0.3F)), PartPose.offsetAndRotation(-47.1409F, -23.5168F, -3.9349F, -0.5693F, 1.1241F, 0.7697F));
 
@@ -364,7 +361,7 @@ public class Bakunawa<T extends Entity> extends HierarchicalModel<T>  {
 		PartDefinition hornleft9_r4 = horn.addOrReplaceChild("hornleft9_r4", CubeListBuilder.create().texOffs(906, 1643).addBox(8.4855F, -9.7464F, -5.1005F, 23.0F, 16.0F, 12.0F, new CubeDeformation(0.3F)), PartPose.offsetAndRotation(-33.1409F, -14.5168F, -15.9349F, -0.4883F, 1.1461F, 0.859F));
 
 		PartDefinition hornright8_r1 = horn.addOrReplaceChild("hornright8_r1", CubeListBuilder.create().texOffs(1642, 1512).addBox(11.7157F, -0.6562F, -3.7118F, 20.0F, 9.0F, 6.0F, new CubeDeformation(0.0F))
-		.texOffs(1646, 1443).addBox(2.823F, 5.9042F, -3.271F, 20.0F, 6.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(40.2386F, -23.5168F, -0.9349F, -0.4883F, -1.1461F, -0.859F));
+				.texOffs(1646, 1443).addBox(2.823F, 5.9042F, -3.271F, 20.0F, 6.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(40.2386F, -23.5168F, -0.9349F, -0.4883F, -1.1461F, -0.859F));
 
 		PartDefinition hornright7_r1 = horn.addOrReplaceChild("hornright7_r1", CubeListBuilder.create().texOffs(598, 1424).addBox(-18.3623F, -13.2524F, -3.5079F, 25.0F, 6.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(40.2386F, -23.5168F, 5.0651F, -0.5382F, -1.1841F, -0.8047F));
 
@@ -379,21 +376,21 @@ public class Bakunawa<T extends Entity> extends HierarchicalModel<T>  {
 		PartDefinition hornright7_r4 = horn.addOrReplaceChild("hornright7_r4", CubeListBuilder.create().texOffs(1452, 872).addBox(-18.3623F, -13.2524F, -3.5079F, 25.0F, 6.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(40.2386F, 24.2332F, 0.0651F, -1.1291F, -1.298F, -0.2431F));
 
 		PartDefinition hornright9_r1 = horn.addOrReplaceChild("hornright9_r1", CubeListBuilder.create().texOffs(784, 1486).addBox(11.7157F, -0.6562F, -3.7118F, 20.0F, 9.0F, 6.0F, new CubeDeformation(0.0F))
-		.texOffs(1651, 649).addBox(2.823F, 5.9042F, -3.271F, 20.0F, 6.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(25.4886F, 45.4832F, -19.1849F, -2.0227F, -1.2379F, 0.6032F));
+				.texOffs(1651, 649).addBox(2.823F, 5.9042F, -3.271F, 20.0F, 6.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(25.4886F, 45.4832F, -19.1849F, -2.0227F, -1.2379F, 0.6032F));
 
 		PartDefinition hornright8_r3 = horn.addOrReplaceChild("hornright8_r3", CubeListBuilder.create().texOffs(1646, 1193).addBox(-8.1926F, -5.9883F, -4.8275F, 23.0F, 16.0F, 9.0F, new CubeDeformation(0.3F)), PartPose.offsetAndRotation(25.4886F, 45.4832F, -19.1849F, -1.9736F, -1.1981F, 0.5508F));
 
 		PartDefinition hornright8_r4 = horn.addOrReplaceChild("hornright8_r4", CubeListBuilder.create().texOffs(1644, 688).addBox(11.7157F, -0.6562F, -3.7118F, 20.0F, 9.0F, 6.0F, new CubeDeformation(0.0F))
-		.texOffs(0, 1648).addBox(2.823F, 5.9042F, -3.271F, 20.0F, 6.0F, 6.0F, new CubeDeformation(0.0F))
-		.texOffs(1642, 467).addBox(-33.8423F, -14.0507F, -4.8915F, 23.0F, 16.0F, 12.0F, new CubeDeformation(0.3F))
-		.texOffs(1642, 1456).addBox(-31.4855F, -9.7464F, -5.1005F, 23.0F, 16.0F, 12.0F, new CubeDeformation(0.3F)), PartPose.offsetAndRotation(40.2386F, 24.2332F, 0.0651F, -0.998F, -1.2768F, -0.3796F));
+				.texOffs(0, 1648).addBox(2.823F, 5.9042F, -3.271F, 20.0F, 6.0F, 6.0F, new CubeDeformation(0.0F))
+				.texOffs(1642, 467).addBox(-33.8423F, -14.0507F, -4.8915F, 23.0F, 16.0F, 12.0F, new CubeDeformation(0.3F))
+				.texOffs(1642, 1456).addBox(-31.4855F, -9.7464F, -5.1005F, 23.0F, 16.0F, 12.0F, new CubeDeformation(0.3F)), PartPose.offsetAndRotation(40.2386F, 24.2332F, 0.0651F, -0.998F, -1.2768F, -0.3796F));
 
 		PartDefinition hornright7_r5 = horn.addOrReplaceChild("hornright7_r5", CubeListBuilder.create().texOffs(1646, 1168).addBox(-8.1926F, -5.9883F, -4.8275F, 23.0F, 16.0F, 9.0F, new CubeDeformation(0.3F)), PartPose.offsetAndRotation(40.2386F, 24.2332F, 0.0651F, -1.0672F, -1.2393F, -0.3069F));
 
 		PartDefinition hornright7_r6 = horn.addOrReplaceChild("hornright7_r6", CubeListBuilder.create().texOffs(1652, 178).addBox(2.823F, 5.9042F, -3.271F, 20.0F, 6.0F, 6.0F, new CubeDeformation(0.0F))
-		.texOffs(1646, 1413).addBox(11.7157F, -0.6562F, -3.7118F, 20.0F, 9.0F, 6.0F, new CubeDeformation(0.0F))
-		.texOffs(210, 1640).addBox(-33.8423F, -14.0507F, -4.8915F, 23.0F, 16.0F, 12.0F, new CubeDeformation(0.3F))
-		.texOffs(280, 1640).addBox(-31.4855F, -9.7464F, -5.1005F, 23.0F, 16.0F, 12.0F, new CubeDeformation(0.3F)), PartPose.offsetAndRotation(40.2386F, -5.7668F, 5.0651F, -0.4883F, -1.1461F, -0.859F));
+				.texOffs(1646, 1413).addBox(11.7157F, -0.6562F, -3.7118F, 20.0F, 9.0F, 6.0F, new CubeDeformation(0.0F))
+				.texOffs(210, 1640).addBox(-33.8423F, -14.0507F, -4.8915F, 23.0F, 16.0F, 12.0F, new CubeDeformation(0.3F))
+				.texOffs(280, 1640).addBox(-31.4855F, -9.7464F, -5.1005F, 23.0F, 16.0F, 12.0F, new CubeDeformation(0.3F)), PartPose.offsetAndRotation(40.2386F, -5.7668F, 5.0651F, -0.4883F, -1.1461F, -0.859F));
 
 		PartDefinition hornright6_r2 = horn.addOrReplaceChild("hornright6_r2", CubeListBuilder.create().texOffs(1342, 890).addBox(-18.3623F, -13.2524F, -3.5079F, 25.0F, 6.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(40.2386F, -5.7668F, 5.0651F, -0.5382F, -1.1841F, -0.8047F));
 
@@ -444,7 +441,7 @@ public class Bakunawa<T extends Entity> extends HierarchicalModel<T>  {
 		PartDefinition tent = h_jaw.addOrReplaceChild("tent", CubeListBuilder.create(), PartPose.offset(-4.0847F, -19.6652F, 568.0205F));
 
 		PartDefinition lowerlip_r11 = tent.addOrReplaceChild("lowerlip_r11", CubeListBuilder.create().texOffs(1126, 1551).addBox(-5.5023F, -136.2087F, -599.8565F, 4.0F, 9.0F, 6.0F, new CubeDeformation(-0.1F))
-		.texOffs(1126, 1551).addBox(9.9977F, -136.2087F, -599.8565F, 4.0F, 9.0F, 6.0F, new CubeDeformation(-0.1F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.2618F, 0.0F, 0.0F));
+				.texOffs(1126, 1551).addBox(9.9977F, -136.2087F, -599.8565F, 4.0F, 9.0F, 6.0F, new CubeDeformation(-0.1F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.2618F, 0.0F, 0.0F));
 
 		PartDefinition lowerlip_r12 = tent.addOrReplaceChild("lowerlip_r12", CubeListBuilder.create().texOffs(1112, 1573).addBox(-1.0F, -3.5F, -2.0F, 3.0F, 8.0F, 4.0F, new CubeDeformation(-0.1F)), PartPose.offsetAndRotation(-23.6805F, 26.757F, -550.1079F, 0.5594F, -0.2316F, 1.0765F));
 
@@ -541,20 +538,20 @@ public class Bakunawa<T extends Entity> extends HierarchicalModel<T>  {
 		PartDefinition lowerlip_r58 = tent.addOrReplaceChild("lowerlip_r58", CubeListBuilder.create().texOffs(960, 1513).addBox(-5.5023F, -136.2087F, -599.8565F, 9.0F, 9.0F, 6.0F, new CubeDeformation(-0.1F)), PartPose.offsetAndRotation(5.25F, 0.0F, -1.0F, 0.2618F, 0.0F, 0.0F));
 
 		PartDefinition lowerlip_r59 = tent.addOrReplaceChild("lowerlip_r59", CubeListBuilder.create().texOffs(1146, 1460).addBox(-8.5023F, -140.2087F, -599.8565F, 8.0F, 13.0F, 6.0F, new CubeDeformation(-0.1F))
-		.texOffs(1146, 1460).addBox(-21.2023F, -140.2087F, -599.8565F, 8.0F, 13.0F, 6.0F, new CubeDeformation(-0.1F)), PartPose.offsetAndRotation(15.0F, -4.0F, -1.25F, 0.2618F, 0.0F, 0.0F));
+				.texOffs(1146, 1460).addBox(-21.2023F, -140.2087F, -599.8565F, 8.0F, 13.0F, 6.0F, new CubeDeformation(-0.1F)), PartPose.offsetAndRotation(15.0F, -4.0F, -1.25F, 0.2618F, 0.0F, 0.0F));
 
 		PartDefinition lowerlip_r60 = tent.addOrReplaceChild("lowerlip_r60", CubeListBuilder.create().texOffs(1286, 1506).addBox(-8.5023F, -140.2087F, -599.8565F, 15.0F, 13.0F, 6.0F, new CubeDeformation(-0.1F)), PartPose.offsetAndRotation(5.0F, -4.0F, -2.25F, 0.2618F, 0.0F, 0.0F));
 
 		PartDefinition teethjaw = h_jaw.addOrReplaceChild("teethjaw", CubeListBuilder.create().texOffs(1602, 1119).addBox(-6.7F, -3.75F, -25.1F, 0.0F, 6.0F, 3.0F, new CubeDeformation(0.0F))
-		.texOffs(1602, 1119).addBox(-6.7F, -3.75F, -30.1F, 0.0F, 6.0F, 3.0F, new CubeDeformation(0.0F))
-		.texOffs(1602, 1119).addBox(-9.7F, -4.75F, -31.1F, 0.0F, 6.0F, 3.0F, new CubeDeformation(0.0F))
-		.texOffs(1602, 1119).addBox(-9.7F, -4.75F, -36.1F, 0.0F, 6.0F, 3.0F, new CubeDeformation(0.0F))
-		.texOffs(1602, 1119).addBox(-13.7F, -4.75F, -32.1F, 0.0F, 6.0F, 3.0F, new CubeDeformation(0.0F))
-		.texOffs(1602, 1119).addBox(-13.7F, -4.75F, -37.1F, 0.0F, 6.0F, 3.0F, new CubeDeformation(0.0F))
-		.texOffs(1602, 1119).mirror().addBox(-23.7106F, -4.75F, -32.1F, 0.0F, 6.0F, 3.0F, new CubeDeformation(0.0F)).mirror(false)
-		.texOffs(1602, 1119).mirror().addBox(-23.7106F, -4.75F, -37.1F, 0.0F, 6.0F, 3.0F, new CubeDeformation(0.0F)).mirror(false)
-		.texOffs(1602, 1119).mirror().addBox(-27.7106F, -4.75F, -36.1F, 0.0F, 6.0F, 3.0F, new CubeDeformation(0.0F)).mirror(false)
-		.texOffs(1602, 1119).mirror().addBox(-27.7106F, -4.75F, -31.1F, 0.0F, 6.0F, 3.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(19.0292F, -8.4222F, -12.6333F, 0.0873F, 0.0F, 0.0F));
+				.texOffs(1602, 1119).addBox(-6.7F, -3.75F, -30.1F, 0.0F, 6.0F, 3.0F, new CubeDeformation(0.0F))
+				.texOffs(1602, 1119).addBox(-9.7F, -4.75F, -31.1F, 0.0F, 6.0F, 3.0F, new CubeDeformation(0.0F))
+				.texOffs(1602, 1119).addBox(-9.7F, -4.75F, -36.1F, 0.0F, 6.0F, 3.0F, new CubeDeformation(0.0F))
+				.texOffs(1602, 1119).addBox(-13.7F, -4.75F, -32.1F, 0.0F, 6.0F, 3.0F, new CubeDeformation(0.0F))
+				.texOffs(1602, 1119).addBox(-13.7F, -4.75F, -37.1F, 0.0F, 6.0F, 3.0F, new CubeDeformation(0.0F))
+				.texOffs(1602, 1119).mirror().addBox(-23.7106F, -4.75F, -32.1F, 0.0F, 6.0F, 3.0F, new CubeDeformation(0.0F)).mirror(false)
+				.texOffs(1602, 1119).mirror().addBox(-23.7106F, -4.75F, -37.1F, 0.0F, 6.0F, 3.0F, new CubeDeformation(0.0F)).mirror(false)
+				.texOffs(1602, 1119).mirror().addBox(-27.7106F, -4.75F, -36.1F, 0.0F, 6.0F, 3.0F, new CubeDeformation(0.0F)).mirror(false)
+				.texOffs(1602, 1119).mirror().addBox(-27.7106F, -4.75F, -31.1F, 0.0F, 6.0F, 3.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(19.0292F, -8.4222F, -12.6333F, 0.0873F, 0.0F, 0.0F));
 
 		PartDefinition cube_r45 = teethjaw.addOrReplaceChild("cube_r45", CubeListBuilder.create().texOffs(1602, 1119).addBox(0.0F, -3.75F, -2.0F, 0.0F, 6.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.3F, 0.0F, 9.9F, 0.0F, 0.1309F, 0.0F));
 
@@ -589,23 +586,23 @@ public class Bakunawa<T extends Entity> extends HierarchicalModel<T>  {
 		PartDefinition cube_r60 = teethjaw.addOrReplaceChild("cube_r60", CubeListBuilder.create().texOffs(1602, 1119).addBox(0.0F, -3.75F, -2.0F, 0.0F, 6.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-1.7F, 0.0F, -18.1F, 0.0F, 0.1309F, 0.0F));
 
 		PartDefinition cube_r61 = teethjaw.addOrReplaceChild("cube_r61", CubeListBuilder.create().texOffs(1602, 1119).mirror().addBox(0.0F, -2.5F, -1.5F, 0.0F, 5.0F, 3.0F, new CubeDeformation(0.0F)).mirror(false)
-		.texOffs(1602, 1119).addBox(18.0106F, -2.5F, -1.5F, 0.0F, 5.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-27.7106F, -0.25F, -28.6F, 1.5708F, 0.0F, 0.0F));
+				.texOffs(1602, 1119).addBox(18.0106F, -2.5F, -1.5F, 0.0F, 5.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-27.7106F, -0.25F, -28.6F, 1.5708F, 0.0F, 0.0F));
 
 		PartDefinition cube_r62 = teethjaw.addOrReplaceChild("cube_r62", CubeListBuilder.create().texOffs(1602, 1119).mirror().addBox(0.0F, -2.5F, -1.5F, 0.0F, 5.0F, 3.0F, new CubeDeformation(0.0F)).mirror(false)
-		.texOffs(1602, 1119).addBox(18.0106F, -2.5F, -1.5F, 0.0F, 5.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-27.7106F, -0.25F, -33.6F, 1.5708F, 0.0F, 0.0F));
+				.texOffs(1602, 1119).addBox(18.0106F, -2.5F, -1.5F, 0.0F, 5.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-27.7106F, -0.25F, -33.6F, 1.5708F, 0.0F, 0.0F));
 
 		PartDefinition cube_r63 = teethjaw.addOrReplaceChild("cube_r63", CubeListBuilder.create().texOffs(1602, 1119).mirror().addBox(0.0F, -2.5F, -1.5F, 0.0F, 5.0F, 3.0F, new CubeDeformation(0.0F)).mirror(false)
-		.texOffs(1602, 1119).addBox(10.0106F, -2.5F, -1.5F, 0.0F, 5.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-23.7106F, -0.25F, -34.6F, 1.5708F, 0.0F, 0.0F));
+				.texOffs(1602, 1119).addBox(10.0106F, -2.5F, -1.5F, 0.0F, 5.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-23.7106F, -0.25F, -34.6F, 1.5708F, 0.0F, 0.0F));
 
 		PartDefinition cube_r64 = teethjaw.addOrReplaceChild("cube_r64", CubeListBuilder.create().texOffs(1602, 1119).mirror().addBox(0.0F, -2.5F, -1.5F, 0.0F, 5.0F, 3.0F, new CubeDeformation(0.0F)).mirror(false)
-		.texOffs(1602, 1119).addBox(10.0106F, -2.5F, -1.5F, 0.0F, 5.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-23.7106F, -0.25F, -29.6F, 1.5708F, 0.0F, 0.0F));
+				.texOffs(1602, 1119).addBox(10.0106F, -2.5F, -1.5F, 0.0F, 5.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-23.7106F, -0.25F, -29.6F, 1.5708F, 0.0F, 0.0F));
 
 		PartDefinition cube_r65 = teethjaw.addOrReplaceChild("cube_r65", CubeListBuilder.create().texOffs(1602, 1119).addBox(0.0F, -2.5F, -1.5F, 0.0F, 5.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-6.7F, 0.75F, -27.6F, 1.5708F, 0.0F, 0.0F));
 
 		PartDefinition cube_r66 = teethjaw.addOrReplaceChild("cube_r66", CubeListBuilder.create().texOffs(1602, 1119).addBox(0.0F, -2.5F, -1.5F, 0.0F, 5.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-6.7F, 0.75F, -22.6F, 1.5708F, 0.0F, 0.0F));
 
 		PartDefinition teethjaw2 = h_jaw.addOrReplaceChild("teethjaw2", CubeListBuilder.create().texOffs(1602, 1119).mirror().addBox(6.7F, -3.75F, -25.1F, 0.0F, 6.0F, 3.0F, new CubeDeformation(0.0F)).mirror(false)
-		.texOffs(1602, 1119).mirror().addBox(6.7F, -3.75F, -30.1F, 0.0F, 6.0F, 3.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(-17.3814F, -8.4222F, -12.6333F, 0.0873F, 0.0F, 0.0F));
+				.texOffs(1602, 1119).mirror().addBox(6.7F, -3.75F, -30.1F, 0.0F, 6.0F, 3.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(-17.3814F, -8.4222F, -12.6333F, 0.0873F, 0.0F, 0.0F));
 
 		PartDefinition cube_r67 = teethjaw2.addOrReplaceChild("cube_r67", CubeListBuilder.create().texOffs(1602, 1119).mirror().addBox(0.0F, -3.75F, -2.0F, 0.0F, 6.0F, 3.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(-2.3F, 0.0F, 9.9F, 0.0F, -0.1309F, 0.0F));
 
@@ -643,12 +640,12 @@ public class Bakunawa<T extends Entity> extends HierarchicalModel<T>  {
 
 		PartDefinition cube_r84 = teethjaw2.addOrReplaceChild("cube_r84", CubeListBuilder.create().texOffs(1602, 1119).mirror().addBox(0.0F, -2.5F, -1.5F, 0.0F, 5.0F, 3.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(6.7F, 0.75F, -22.6F, 1.5708F, 0.0F, 0.0F));
 
-		PartDefinition body = bakunawa.addOrReplaceChild("body", CubeListBuilder.create(), PartPose.offset(0.0F, 43.9544F, 232.6048F));
+		PartDefinition body = bakunawa.addOrReplaceChild("body", CubeListBuilder.create(), PartPose.offset(-6.0F, 527.9544F, -262.3952F));
 
 		PartDefinition spine0 = body.addOrReplaceChild("spine0", CubeListBuilder.create().texOffs(242, 1144).addBox(-26.894F, -7.4343F, -38.0356F, 54.0F, 34.0F, 78.0F, new CubeDeformation(0.0F))
-		.texOffs(1496, 216).addBox(-19.694F, -11.4343F, -41.4357F, 40.0F, 4.0F, 20.0F, new CubeDeformation(0.0F))
-		.texOffs(990, 1511).addBox(-19.694F, -7.4343F, -48.2357F, 40.0F, 34.0F, 28.0F, new CubeDeformation(0.0F))
-		.texOffs(1007, 1161).addBox(-14.494F, -13.4343F, -21.0357F, 28.0F, 6.0F, 61.0F, new CubeDeformation(0.0F)), PartPose.offset(0.094F, -67.3657F, -125.1644F));
+				.texOffs(1496, 216).addBox(-19.694F, -11.4343F, -41.4357F, 40.0F, 4.0F, 20.0F, new CubeDeformation(0.0F))
+				.texOffs(990, 1511).addBox(-19.694F, -7.4343F, -48.2357F, 40.0F, 34.0F, 28.0F, new CubeDeformation(0.0F))
+				.texOffs(1007, 1161).addBox(-14.494F, -13.4343F, -21.0357F, 28.0F, 6.0F, 61.0F, new CubeDeformation(0.0F)), PartPose.offset(0.094F, -67.3657F, -125.1644F));
 
 		PartDefinition cube_r85 = spine0.addOrReplaceChild("cube_r85", CubeListBuilder.create().texOffs(749, 35).addBox(-1.5F, -38.5F, -61.5F, 3.0F, 77.0F, 123.0F, new CubeDeformation(-0.9F)), PartPose.offsetAndRotation(0.276F, -43.6643F, 0.9943F, 0.1745F, 0.0F, 0.0F));
 
@@ -663,9 +660,9 @@ public class Bakunawa<T extends Entity> extends HierarchicalModel<T>  {
 		PartDefinition cube_r90 = spine0.addOrReplaceChild("cube_r90", CubeListBuilder.create().texOffs(1174, 1436).addBox(-24.625F, -321.5848F, -138.0475F, 48.0F, 40.0F, 30.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.331F, 13.9685F, 343.6144F, 1.2217F, 0.0F, 0.0F));
 
 		PartDefinition spine1 = body.addOrReplaceChild("spine1", CubeListBuilder.create().texOffs(197, 1099).addBox(-26.8388F, -11.0568F, -67.1993F, 54.0F, 34.0F, 123.0F, new CubeDeformation(0.0F))
-		.texOffs(945, 1099).addBox(-14.4388F, -17.0568F, -67.1993F, 28.0F, 6.0F, 123.0F, new CubeDeformation(0.0F))
-		.texOffs(749, 35).addBox(-1.1687F, -70.2868F, -0.6693F, 3.0F, 77.0F, 123.0F, new CubeDeformation(-0.9F))
-		.texOffs(749, 35).addBox(-1.1687F, -93.2868F, -63.6693F, 3.0F, 77.0F, 123.0F, new CubeDeformation(-0.9F)), PartPose.offset(0.0387F, -63.7432F, -18.0007F));
+				.texOffs(945, 1099).addBox(-14.4388F, -17.0568F, -67.1993F, 28.0F, 6.0F, 123.0F, new CubeDeformation(0.0F))
+				.texOffs(749, 35).addBox(-1.1687F, -70.2868F, -0.6693F, 3.0F, 77.0F, 123.0F, new CubeDeformation(-0.9F))
+				.texOffs(749, 35).addBox(-1.1687F, -93.2868F, -63.6693F, 3.0F, 77.0F, 123.0F, new CubeDeformation(-0.9F)), PartPose.offset(0.0387F, -63.7432F, -18.0007F));
 
 		PartDefinition cube_r91 = spine1.addOrReplaceChild("cube_r91", CubeListBuilder.create().texOffs(1174, 1436).addBox(-24.625F, -321.5848F, -138.0475F, 48.0F, 40.0F, 30.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.3862F, 10.346F, 278.4507F, 1.2217F, 0.0F, 0.0F));
 
@@ -676,7 +673,7 @@ public class Bakunawa<T extends Entity> extends HierarchicalModel<T>  {
 		PartDefinition cube_r94 = spine1.addOrReplaceChild("cube_r94", CubeListBuilder.create().texOffs(1174, 1436).addBox(-24.625F, -321.5848F, -138.0475F, 48.0F, 40.0F, 30.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.3862F, 10.346F, 320.4507F, 1.2217F, 0.0F, 0.0F));
 
 		PartDefinition spine2 = body.addOrReplaceChild("spine2", CubeListBuilder.create().texOffs(197, 1099).addBox(-22.2727F, -28.103F, -62.6659F, 54.0F, 34.0F, 123.0F, new CubeDeformation(0.0F))
-		.texOffs(945, 1099).addBox(-9.8727F, -34.103F, -62.6659F, 28.0F, 6.0F, 123.0F, new CubeDeformation(0.0F)), PartPose.offset(-4.8037F, -46.6542F, 100.5381F));
+				.texOffs(945, 1099).addBox(-9.8727F, -34.103F, -62.6659F, 28.0F, 6.0F, 123.0F, new CubeDeformation(0.0F)), PartPose.offset(-4.8037F, -46.6542F, 100.5381F));
 
 		PartDefinition cube_r95 = spine2.addOrReplaceChild("cube_r95", CubeListBuilder.create().texOffs(749, 35).mirror().addBox(-1.5F, -38.5F, -61.5F, 3.0F, 77.0F, 123.0F, new CubeDeformation(-0.9F)).mirror(false), PartPose.offsetAndRotation(-36.8427F, 35.167F, 40.3641F, 0.0F, 0.0F, -2.618F));
 
@@ -691,7 +688,7 @@ public class Bakunawa<T extends Entity> extends HierarchicalModel<T>  {
 		PartDefinition cube_r100 = spine2.addOrReplaceChild("cube_r100", CubeListBuilder.create().texOffs(1174, 1436).addBox(-24.625F, -321.5848F, -138.0475F, 48.0F, 40.0F, 30.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(4.9523F, -6.7002F, 366.9841F, 1.2217F, 0.0F, 0.0F));
 
 		PartDefinition spine3 = body.addOrReplaceChild("spine3", CubeListBuilder.create().texOffs(197, 1099).addBox(-15.1795F, -28.7358F, -47.7904F, 54.0F, 34.0F, 123.0F, new CubeDeformation(0.0F))
-		.texOffs(945, 1099).addBox(-2.7795F, -34.7358F, -47.7904F, 28.0F, 6.0F, 123.0F, new CubeDeformation(0.0F)), PartPose.offset(-11.8874F, -46.0642F, 208.4861F));
+				.texOffs(945, 1099).addBox(-2.7795F, -34.7358F, -47.7904F, 28.0F, 6.0F, 123.0F, new CubeDeformation(0.0F)), PartPose.offset(-11.8874F, -46.0642F, 208.4861F));
 
 		PartDefinition cube_r101 = spine3.addOrReplaceChild("cube_r101", CubeListBuilder.create().texOffs(749, 35).addBox(-1.5F, -38.5F, -61.5F, 3.0F, 77.0F, 123.0F, new CubeDeformation(-0.9F)), PartPose.offsetAndRotation(11.9905F, -37.9658F, 29.2396F, 0.1745F, 0.0F, 0.0F));
 
@@ -702,7 +699,7 @@ public class Bakunawa<T extends Entity> extends HierarchicalModel<T>  {
 		PartDefinition cube_r104 = spine3.addOrReplaceChild("cube_r104", CubeListBuilder.create().texOffs(1174, 1436).addBox(-24.625F, -321.5848F, -138.0475F, 48.0F, 40.0F, 30.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(12.0455F, -7.333F, 381.8596F, 1.2217F, 0.0F, 0.0F));
 
 		PartDefinition spine4 = body.addOrReplaceChild("spine4", CubeListBuilder.create().texOffs(197, 1099).addBox(-27.17F, -3.77F, -20.03F, 54.0F, 34.0F, 123.0F, new CubeDeformation(-0.5F))
-		.texOffs(946, 1100).addBox(-14.77F, -8.77F, -19.03F, 28.0F, 6.0F, 122.0F, new CubeDeformation(-0.5F)), PartPose.offset(0.37F, -71.03F, 302.83F));
+				.texOffs(946, 1100).addBox(-14.77F, -8.77F, -19.03F, 28.0F, 6.0F, 122.0F, new CubeDeformation(-0.5F)), PartPose.offset(0.37F, -71.03F, 302.83F));
 
 		PartDefinition cube_r105 = spine4.addOrReplaceChild("cube_r105", CubeListBuilder.create().texOffs(749, 35).addBox(-1.5F, -38.5F, -61.5F, 3.0F, 46.0F, 123.0F, new CubeDeformation(-0.9F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.1745F, 0.0F, 0.0F));
 
@@ -713,7 +710,7 @@ public class Bakunawa<T extends Entity> extends HierarchicalModel<T>  {
 		PartDefinition cube_r108 = spine4.addOrReplaceChild("cube_r108", CubeListBuilder.create().texOffs(1174, 1436).addBox(-24.625F, -321.5848F, -138.0475F, 48.0F, 40.0F, 30.0F, new CubeDeformation(-0.5F)), PartPose.offsetAndRotation(0.055F, 17.6328F, 325.62F, 1.2217F, 0.0F, 0.0F));
 
 		PartDefinition spine5 = body.addOrReplaceChild("spine5", CubeListBuilder.create().texOffs(197, 1099).addBox(-27.0942F, -3.77F, -62.4056F, 54.0F, 34.0F, 123.0F, new CubeDeformation(-0.5F))
-		.texOffs(945, 1099).addBox(-14.6942F, -8.77F, -62.4056F, 28.0F, 6.0F, 123.0F, new CubeDeformation(-0.5F)), PartPose.offset(0.37F, -71.03F, 466.83F));
+				.texOffs(945, 1099).addBox(-14.6942F, -8.77F, -62.4056F, 28.0F, 6.0F, 123.0F, new CubeDeformation(-0.5F)), PartPose.offset(0.37F, -71.03F, 466.83F));
 
 		PartDefinition cube_r109 = spine5.addOrReplaceChild("cube_r109", CubeListBuilder.create().texOffs(749, 35).addBox(-1.5F, -38.5F, -61.5F, 3.0F, 46.0F, 123.0F, new CubeDeformation(-0.9F)), PartPose.offsetAndRotation(0.0758F, 0.0F, -42.3756F, 0.1745F, 0.0F, 0.0F));
 
@@ -724,8 +721,8 @@ public class Bakunawa<T extends Entity> extends HierarchicalModel<T>  {
 		PartDefinition cube_r112 = spine5.addOrReplaceChild("cube_r112", CubeListBuilder.create().texOffs(1174, 1436).addBox(-24.625F, -321.5848F, -138.0475F, 48.0F, 40.0F, 30.0F, new CubeDeformation(-0.5F)), PartPose.offsetAndRotation(0.1308F, 17.6328F, 283.2444F, 1.2217F, 0.0F, 0.0F));
 
 		PartDefinition spine6 = body.addOrReplaceChild("spine6", CubeListBuilder.create().texOffs(197, 1099).addBox(-27.4F, -31.3455F, -70.0226F, 54.0F, 34.0F, 123.0F, new CubeDeformation(-0.5F))
-		.texOffs(749, 35).addBox(-1.73F, -90.5755F, -64.4926F, 3.0F, 77.0F, 123.0F, new CubeDeformation(-0.9F))
-		.texOffs(945, 1099).addBox(-15.0F, -36.3455F, -70.0226F, 28.0F, 6.0F, 123.0F, new CubeDeformation(-0.5F)), PartPose.offset(0.6F, -43.3F, 596.8F));
+				.texOffs(749, 35).addBox(-1.73F, -90.5755F, -64.4926F, 3.0F, 77.0F, 123.0F, new CubeDeformation(-0.9F))
+				.texOffs(945, 1099).addBox(-15.0F, -36.3455F, -70.0226F, 28.0F, 6.0F, 123.0F, new CubeDeformation(-0.5F)), PartPose.offset(0.6F, -43.3F, 596.8F));
 
 		PartDefinition cube_r113 = spine6.addOrReplaceChild("cube_r113", CubeListBuilder.create().texOffs(1174, 1436).addBox(-24.625F, -321.5848F, -138.0475F, 48.0F, 40.0F, 30.0F, new CubeDeformation(-0.5F)), PartPose.offsetAndRotation(-0.175F, -9.9427F, 357.6274F, 1.2217F, 0.0F, 0.0F));
 
@@ -734,8 +731,8 @@ public class Bakunawa<T extends Entity> extends HierarchicalModel<T>  {
 		PartDefinition cube_r115 = spine6.addOrReplaceChild("cube_r115", CubeListBuilder.create().texOffs(1174, 1436).addBox(-24.625F, -321.5848F, -138.0475F, 48.0F, 40.0F, 30.0F, new CubeDeformation(-0.5F)), PartPose.offsetAndRotation(-0.175F, -9.9427F, 275.6274F, 1.2217F, 0.0F, 0.0F));
 
 		PartDefinition spine7 = body.addOrReplaceChild("spine7", CubeListBuilder.create().texOffs(197, 1099).addBox(-27.17F, -14.27F, -64.03F, 54.0F, 34.0F, 123.0F, new CubeDeformation(-0.5F))
-		.texOffs(945, 1099).addBox(-14.77F, -19.27F, -64.03F, 28.0F, 6.0F, 123.0F, new CubeDeformation(-0.5F))
-		.texOffs(749, 35).addBox(-1.5F, -73.5F, -25.5F, 3.0F, 77.0F, 123.0F, new CubeDeformation(-0.9F)), PartPose.offset(0.37F, -60.53F, 712.83F));
+				.texOffs(945, 1099).addBox(-14.77F, -19.27F, -64.03F, 28.0F, 6.0F, 123.0F, new CubeDeformation(-0.5F))
+				.texOffs(749, 35).addBox(-1.5F, -73.5F, -25.5F, 3.0F, 77.0F, 123.0F, new CubeDeformation(-0.9F)), PartPose.offset(0.37F, -60.53F, 712.83F));
 
 		PartDefinition cube_r116 = spine7.addOrReplaceChild("cube_r116", CubeListBuilder.create().texOffs(749, 35).mirror().addBox(-1.5F, -38.5F, -61.5F, 3.0F, 77.0F, 123.0F, new CubeDeformation(-0.9F)).mirror(false), PartPose.offsetAndRotation(-28.74F, 29.0F, 10.0F, 0.0F, 0.0F, -2.618F));
 
@@ -750,7 +747,7 @@ public class Bakunawa<T extends Entity> extends HierarchicalModel<T>  {
 		PartDefinition cube_r121 = spine7.addOrReplaceChild("cube_r121", CubeListBuilder.create().texOffs(1174, 1436).addBox(-24.625F, -321.5848F, -138.0475F, 48.0F, 40.0F, 30.0F, new CubeDeformation(-0.5F)), PartPose.offsetAndRotation(0.055F, 7.1328F, 281.62F, 1.2217F, 0.0F, 0.0F));
 
 		PartDefinition spine8 = body.addOrReplaceChild("spine8", CubeListBuilder.create().texOffs(197, 1099).addBox(-26.4F, -19.2628F, -54.739F, 54.0F, 34.0F, 123.0F, new CubeDeformation(-0.5F))
-		.texOffs(945, 1099).addBox(-14.0F, -24.2628F, -54.739F, 28.0F, 6.0F, 123.0F, new CubeDeformation(-0.5F)), PartPose.offset(-0.4F, -55.55F, 825.3F));
+				.texOffs(945, 1099).addBox(-14.0F, -24.2628F, -54.739F, 28.0F, 6.0F, 123.0F, new CubeDeformation(-0.5F)), PartPose.offset(-0.4F, -55.55F, 825.3F));
 
 		PartDefinition cube_r122 = spine8.addOrReplaceChild("cube_r122", CubeListBuilder.create().texOffs(749, 35).addBox(-1.5F, -38.5F, -61.5F, 3.0F, 74.0F, 123.0F, new CubeDeformation(-0.9F)), PartPose.offsetAndRotation(0.77F, -20.4928F, 19.291F, 0.1745F, 0.0F, 0.0F));
 
@@ -761,8 +758,8 @@ public class Bakunawa<T extends Entity> extends HierarchicalModel<T>  {
 		PartDefinition cube_r125 = spine8.addOrReplaceChild("cube_r125", CubeListBuilder.create().texOffs(1174, 1436).addBox(-24.625F, -321.5848F, -138.0475F, 48.0F, 40.0F, 30.0F, new CubeDeformation(-0.5F)), PartPose.offsetAndRotation(0.825F, 2.14F, 372.911F, 1.2217F, 0.0F, 0.0F));
 
 		PartDefinition spine9 = body.addOrReplaceChild("spine9", CubeListBuilder.create().texOffs(1087, 115).addBox(-12.5F, -25.5F, -66.45F, 25.0F, 5.0F, 122.0F, new CubeDeformation(-0.7F))
-		.texOffs(197, 1099).addBox(-27.17F, -22.27F, -67.03F, 54.0F, 34.0F, 123.0F, new CubeDeformation(-1.0F))
-		.texOffs(749, 35).addBox(-1.5F, -68.5F, -78.5F, 3.0F, 51.0F, 123.0F, new CubeDeformation(-0.9F)), PartPose.offset(0.37F, -52.53F, 958.83F));
+				.texOffs(197, 1099).addBox(-27.17F, -22.27F, -67.03F, 54.0F, 34.0F, 123.0F, new CubeDeformation(-1.0F))
+				.texOffs(749, 35).addBox(-1.5F, -68.5F, -78.5F, 3.0F, 51.0F, 123.0F, new CubeDeformation(-0.9F)), PartPose.offset(0.37F, -52.53F, 958.83F));
 
 		PartDefinition cube_r126 = spine9.addOrReplaceChild("cube_r126", CubeListBuilder.create().texOffs(1174, 1436).addBox(-24.625F, -321.5848F, -138.0475F, 48.0F, 40.0F, 30.0F, new CubeDeformation(-1.0F)), PartPose.offsetAndRotation(0.055F, -0.8672F, 359.62F, 1.2217F, 0.0F, 0.0F));
 
@@ -771,8 +768,8 @@ public class Bakunawa<T extends Entity> extends HierarchicalModel<T>  {
 		PartDefinition cube_r128 = spine9.addOrReplaceChild("cube_r128", CubeListBuilder.create().texOffs(1174, 1436).addBox(-24.625F, -321.5848F, -138.0475F, 48.0F, 40.0F, 30.0F, new CubeDeformation(-1.0F)), PartPose.offsetAndRotation(0.055F, -0.8672F, 279.62F, 1.2217F, 0.0F, 0.0F));
 
 		PartDefinition spine10 = body.addOrReplaceChild("spine10", CubeListBuilder.create().texOffs(1087, 115).addBox(-12.5F, -10.5F, -56.45F, 25.0F, 5.0F, 122.0F, new CubeDeformation(-0.7F))
-		.texOffs(197, 1099).addBox(-27.17F, -7.27F, -57.03F, 54.0F, 34.0F, 123.0F, new CubeDeformation(-1.0F))
-		.texOffs(749, 35).addBox(-1.5F, -53.5F, -68.5F, 3.0F, 51.0F, 123.0F, new CubeDeformation(-0.9F)), PartPose.offset(0.37F, -67.53F, 1069.83F));
+				.texOffs(197, 1099).addBox(-27.17F, -7.27F, -57.03F, 54.0F, 34.0F, 123.0F, new CubeDeformation(-1.0F))
+				.texOffs(749, 35).addBox(-1.5F, -53.5F, -68.5F, 3.0F, 51.0F, 123.0F, new CubeDeformation(-0.9F)), PartPose.offset(0.37F, -67.53F, 1069.83F));
 
 		PartDefinition cube_r129 = spine10.addOrReplaceChild("cube_r129", CubeListBuilder.create().texOffs(1174, 1436).addBox(-24.625F, -321.5848F, -138.0475F, 48.0F, 40.0F, 30.0F, new CubeDeformation(-1.0F)), PartPose.offsetAndRotation(0.055F, 14.1328F, 368.62F, 1.2217F, 0.0F, 0.0F));
 
@@ -781,7 +778,7 @@ public class Bakunawa<T extends Entity> extends HierarchicalModel<T>  {
 		PartDefinition cube_r131 = spine10.addOrReplaceChild("cube_r131", CubeListBuilder.create().texOffs(1174, 1436).addBox(-24.625F, -321.5848F, -138.0475F, 48.0F, 40.0F, 30.0F, new CubeDeformation(-1.0F)), PartPose.offsetAndRotation(0.055F, 14.1328F, 288.62F, 1.2217F, 0.0F, 0.0F));
 
 		PartDefinition spine11 = body.addOrReplaceChild("spine11", CubeListBuilder.create().texOffs(1087, 115).addBox(-12.5F, -23.0F, -71.95F, 25.0F, 5.0F, 122.0F, new CubeDeformation(-0.7F))
-		.texOffs(197, 1099).addBox(-27.17F, -19.77F, -72.03F, 54.0F, 34.0F, 123.0F, new CubeDeformation(-1.0F)), PartPose.offset(0.37F, -55.03F, 1205.83F));
+				.texOffs(197, 1099).addBox(-27.17F, -19.77F, -72.03F, 54.0F, 34.0F, 123.0F, new CubeDeformation(-1.0F)), PartPose.offset(0.37F, -55.03F, 1205.83F));
 
 		PartDefinition cube_r132 = spine11.addOrReplaceChild("cube_r132", CubeListBuilder.create().texOffs(749, 35).addBox(-1.5F, -38.5F, -61.5F, 3.0F, 51.0F, 123.0F, new CubeDeformation(-0.9F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.1745F, 0.0F, 0.0F));
 
@@ -798,7 +795,7 @@ public class Bakunawa<T extends Entity> extends HierarchicalModel<T>  {
 		PartDefinition cube_r138 = spine11.addOrReplaceChild("cube_r138", CubeListBuilder.create().texOffs(1174, 1436).addBox(-24.625F, -321.5848F, -138.0475F, 48.0F, 40.0F, 30.0F, new CubeDeformation(-1.0F)), PartPose.offsetAndRotation(0.055F, 1.6328F, 272.62F, 1.2217F, 0.0F, 0.0F));
 
 		PartDefinition spine12 = body.addOrReplaceChild("spine12", CubeListBuilder.create().texOffs(197, 1099).addBox(-27.225F, -21.4028F, -63.65F, 54.0F, 34.0F, 123.0F, new CubeDeformation(-2.0F))
-		.texOffs(1086, 114).addBox(-12.555F, -23.6328F, -63.32F, 25.0F, 5.0F, 123.0F, new CubeDeformation(-0.9F)), PartPose.offset(0.425F, -53.3972F, 1317.45F));
+				.texOffs(1086, 114).addBox(-12.555F, -23.6328F, -63.32F, 25.0F, 5.0F, 123.0F, new CubeDeformation(-0.9F)), PartPose.offset(0.425F, -53.3972F, 1317.45F));
 
 		PartDefinition cube_r139 = spine12.addOrReplaceChild("cube_r139", CubeListBuilder.create().texOffs(1174, 1436).addBox(-24.625F, -321.5848F, -138.0475F, 48.0F, 40.0F, 30.0F, new CubeDeformation(-2.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 319.0F, 1.2217F, 0.0F, 0.0F));
 
@@ -807,9 +804,9 @@ public class Bakunawa<T extends Entity> extends HierarchicalModel<T>  {
 		PartDefinition cube_r141 = spine12.addOrReplaceChild("cube_r141", CubeListBuilder.create().texOffs(1174, 1436).addBox(-24.625F, -321.5848F, -138.0475F, 48.0F, 40.0F, 30.0F, new CubeDeformation(-2.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 281.0F, 1.2217F, 0.0F, 0.0F));
 
 		PartDefinition main_tail = body.addOrReplaceChild("main_tail", CubeListBuilder.create().texOffs(1086, 114).addBox(-12.2081F, -14.2722F, -74.7722F, 25.0F, 5.0F, 123.0F, new CubeDeformation(-0.9F))
-		.texOffs(749, 35).addBox(-1.2081F, -58.2722F, -16.5722F, 3.0F, 54.0F, 123.0F, new CubeDeformation(-0.9F))
-		.texOffs(197, 1099).addBox(-26.8781F, -12.0422F, -75.1022F, 54.0F, 34.0F, 123.0F, new CubeDeformation(-2.0F))
-		.texOffs(197, 1099).mirror().addBox(-27.2781F, -12.0422F, -75.1022F, 54.0F, 34.0F, 123.0F, new CubeDeformation(-2.0F)).mirror(false), PartPose.offset(0.0781F, -62.7578F, 1447.9022F));
+				.texOffs(749, 35).addBox(-1.2081F, -58.2722F, -16.5722F, 3.0F, 54.0F, 123.0F, new CubeDeformation(-0.9F))
+				.texOffs(197, 1099).addBox(-26.8781F, -12.0422F, -75.1022F, 54.0F, 34.0F, 123.0F, new CubeDeformation(-2.0F))
+				.texOffs(197, 1099).mirror().addBox(-27.2781F, -12.0422F, -75.1022F, 54.0F, 34.0F, 123.0F, new CubeDeformation(-2.0F)).mirror(false), PartPose.offset(0.0781F, -62.7578F, 1447.9022F));
 
 		PartDefinition cube_r142 = main_tail.addOrReplaceChild("cube_r142", CubeListBuilder.create().texOffs(1174, 1436).addBox(-24.625F, -321.5848F, -138.0475F, 48.0F, 40.0F, 30.0F, new CubeDeformation(-2.0F)), PartPose.offsetAndRotation(0.3469F, 9.3606F, 264.5478F, 1.2217F, 0.0F, 0.0F));
 
@@ -847,9 +844,7 @@ public class Bakunawa<T extends Entity> extends HierarchicalModel<T>  {
 
 		// animations
 		this.animate(((BakunawaBoss) entity).idleAnimationState, BakunawaAnimations.idle, ageInTicks, 1f);
-		this.animate(((BakunawaBoss) entity).swimAnimationState, BakunawaAnimations.swim, ageInTicks, 2f);
-		this.animate(((BakunawaBoss) entity).deathAnimationState, BakunawaAnimations.death, ageInTicks, 0f);
-		this.animate(((BakunawaBoss) entity).attackAnimationState, BakunawaAnimations.attack, ageInTicks, 1f);
+		//this.animate(((BakunawaBoss) entity).attackAnimationState, BakunawaAnimations.attack, ageInTicks, 1f);
 
 	}
 
@@ -864,7 +859,6 @@ public class Bakunawa<T extends Entity> extends HierarchicalModel<T>  {
 	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
 		bakunawa.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-		hitbox.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
 	}
 
 	@Override

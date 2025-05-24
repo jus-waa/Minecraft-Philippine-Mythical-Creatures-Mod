@@ -1,11 +1,7 @@
 package net.gamedev.philmythmod.entity;
 
 import net.gamedev.philmythmod.PhilippineMythMod;
-import net.gamedev.philmythmod.entity.boss.BakunawaBoss;
-import net.gamedev.philmythmod.entity.boss.AswangEntity;
-import net.gamedev.philmythmod.entity.boss.KapreEntity;
-import net.gamedev.philmythmod.entity.boss.ManananggalEntity;
-import net.gamedev.philmythmod.entity.boss.MangkukulamEntity;
+import net.gamedev.philmythmod.entity.boss.*;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -20,7 +16,7 @@ public class ModEntities {
 
     public static final RegistryObject<EntityType<BakunawaBoss>> BAKUNAWA =
             ENTITY_TYPES.register("bakunawa", () -> EntityType.Builder.of(BakunawaBoss::new, MobCategory.WATER_CREATURE)
-                    .sized(25.0f, 25.0f).build("bakunawa"));
+                    .sized(30.0f, 35.0f).build("bakunawa"));
     public static final RegistryObject<EntityType<AswangEntity>> ASWANG =
             ENTITY_TYPES.register("aswang", () -> EntityType.Builder.of(AswangEntity::new, MobCategory.MONSTER)
                     .sized(0.8f, 1.7f).build("aswang"));
@@ -33,6 +29,21 @@ public class ModEntities {
     public static final RegistryObject<EntityType<MangkukulamEntity>> MANGKUKULAM =
             ENTITY_TYPES.register("mangkukulam", () -> EntityType.Builder.of(MangkukulamEntity::new, MobCategory.MONSTER)
                     .sized(1.0f, 2.0f).build("mangkukulam"));
+    public static final RegistryObject<EntityType<BabaylanEntity>> BABAYLAN =
+            ENTITY_TYPES.register("babaylan", () -> EntityType.Builder.of(BabaylanEntity::new, MobCategory.MONSTER)
+                    .sized(1.0f, 2.5f).build("babaylan"));
+    public static final RegistryObject<EntityType<BerberokaEntity>> BERBEROKA =
+            ENTITY_TYPES.register("berberoka", () -> EntityType.Builder.of(BerberokaEntity::new, MobCategory.MONSTER)
+                    .sized(2.0f, 2.8f).build("berberoka"));
+    public static final RegistryObject<EntityType<DiwataEntity>> DIWATA =
+            ENTITY_TYPES.register("diwata", () -> EntityType.Builder.of(DiwataEntity::new, MobCategory.MONSTER)
+                    .sized(1.0f, 2.5f).build("diwata"));
+    public static final RegistryObject<EntityType<NunoEntity>> NUNO =
+            ENTITY_TYPES.register("nuno", () -> EntityType.Builder.of(NunoEntity::new, MobCategory.MONSTER)
+                    .sized(0.5f, 1.5f).build("nuno"));
+    public static final RegistryObject<EntityType<TikbalangEntity>> TIKBALANG =
+            ENTITY_TYPES.register("tikbalang", () -> EntityType.Builder.of(TikbalangEntity::new, MobCategory.MONSTER)
+                    .sized(1.0f, 2.8f).build("tikbalang"));
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);
     }

@@ -1,31 +1,28 @@
 package net.gamedev.philmythmod.entity.ai;
 
-import net.gamedev.philmythmod.entity.boss.BakunawaBoss;
-import net.minecraft.core.BlockPos;
+import net.gamedev.philmythmod.entity.boss.NunoEntity;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
-import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.phys.Vec3;
 
-public class BakunawaAttackGoal extends MeleeAttackGoal {
-    private final BakunawaBoss entity;
+public class NunoAttackGoal extends MeleeAttackGoal {
+    private final NunoEntity entity;
     //again ticks depends on the animation 12 cause animation needs 12 ticks
-    private int attackDelay = 24;
-    private int ticksUntilNextAttack = 8;
+    private int attackDelay = 6;
+    private int ticksUntilNextAttack = 6;
     private boolean shouldCountTillNextAttack = false;
-    public BakunawaAttackGoal(PathfinderMob pMob, double pSpeedModifier, boolean pFollowingTargetEvenIfNotSeen) {
+    public NunoAttackGoal(PathfinderMob pMob, double pSpeedModifier, boolean pFollowingTargetEvenIfNotSeen) {
         super(pMob, pSpeedModifier, pFollowingTargetEvenIfNotSeen);
-        entity = ((BakunawaBoss) pMob);
+        entity = ((NunoEntity) pMob);
     }
 
     //start attack
     @Override
     public void start() {
         super.start();
-        attackDelay = 24;
-        ticksUntilNextAttack = 8;
+        attackDelay = 6;
+        ticksUntilNextAttack = 6;
     }
     //performs the attack
     @Override

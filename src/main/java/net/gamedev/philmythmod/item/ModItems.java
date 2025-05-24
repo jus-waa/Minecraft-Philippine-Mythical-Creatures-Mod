@@ -49,17 +49,32 @@ public class ModItems {
     public static final RegistryObject<Item> MANGKUKULAM_SPAWN_EGG = ITEMS.register("mangkukulam_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntities.MANGKUKULAM, 0x7e9680, 0xc5d1c5,
                     new Item.Properties()));
+    public static final RegistryObject<Item> BABAYLAN_SPAWN_EGG = ITEMS.register("babaylan_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.BABAYLAN, 0x7e9680, 0xc5d1c5,
+                    new Item.Properties()));
+    public static final RegistryObject<Item> BERBEROKA_SPAWN_EGG = ITEMS.register("berberoka_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.BERBEROKA, 0x7e9680, 0xc5d1c5,
+                    new Item.Properties()));
+    public static final RegistryObject<Item> DIWATA_SPAWN_EGG = ITEMS.register("diwata_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.DIWATA, 0x7e9680, 0xc5d1c5,
+                    new Item.Properties()));
+    public static final RegistryObject<Item> NUNO_SPAWN_EGG = ITEMS.register("nuno_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.NUNO, 0x7e9680, 0xc5d1c5,
+                    new Item.Properties()));
+    public static final RegistryObject<Item> TIKBALANG_SPAWN_EGG = ITEMS.register("tikbalang_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.TIKBALANG, 0x7e9680, 0xc5d1c5,
+                    new Item.Properties()));
     // mooncore weapons
     public static final RegistryObject<Item> KARAMBIT = ITEMS.register("karambit",
-            () -> new SwordItem(ModToolTiers.MOONCORE_SCALE, 1, -1F, new Item.Properties().fireResistant().setNoRepair()));
+            () -> new SwordItem(ModToolTiers.MOONCORE_SCALE, 2, -1F, new Item.Properties().fireResistant().setNoRepair()));
     public static final RegistryObject<Item> SIBAT = ITEMS.register("sibat",
-            () -> new SwordItem(ModToolTiers.MOONCORE_SCALE, 5, -3.4F, new Item.Properties().fireResistant().setNoRepair()));
+            () -> new SwordItem(ModToolTiers.MOONCORE_SCALE, 6, -3.4F, new Item.Properties().fireResistant().setNoRepair()));
     public static final RegistryObject<Item> KRISS = ITEMS.register("kriss",
-            () -> new SwordItem(ModToolTiers.MOONCORE_SCALE, 4, -2.4F, new Item.Properties().fireResistant().setNoRepair()));
+            () -> new SwordItem(ModToolTiers.MOONCORE_SCALE, 5, -2.4F, new Item.Properties().fireResistant().setNoRepair()));
     public static final RegistryObject<Item> ARNIS = ITEMS.register("arnis",
-            () -> new SwordItem(ModToolTiers.MOONCORE_SCALE, 3, -2.8F, new Item.Properties().fireResistant().setNoRepair()));
+            () -> new SwordItem(ModToolTiers.MOONCORE_SCALE, 6, -2.8F, new Item.Properties().fireResistant().setNoRepair()));
     public static final RegistryObject<Item> BOLO = ITEMS.register("bolo",
-            () -> new SwordItem(ModToolTiers.MOONCORE_SCALE, 4, -3F, new Item.Properties().fireResistant().setNoRepair()));
+            () -> new SwordItem(ModToolTiers.MOONCORE_SCALE, 5, -3F, new Item.Properties().fireResistant().setNoRepair()));
     public static final RegistryObject<Item> KALASAG = ITEMS.register("kalasag",
             () -> new ShieldItem(new Item.Properties().durability(1008).fireResistant().setNoRepair()));
     // reminder:

@@ -2,11 +2,7 @@ package net.gamedev.philmythmod;
 
 import com.mojang.logging.LogUtils;
 import net.gamedev.philmythmod.entity.ModEntities;
-import net.gamedev.philmythmod.entity.client.AswangRenderer;
-import net.gamedev.philmythmod.entity.client.BakunawaRenderer;
-import net.gamedev.philmythmod.entity.client.ManananggalRenderer;
-import net.gamedev.philmythmod.entity.client.KapreRenderer;
-import net.gamedev.philmythmod.entity.client.MangkukulamRenderer;
+import net.gamedev.philmythmod.entity.client.*;
 import net.gamedev.philmythmod.item.ModCreativeModeTabs;
 import net.gamedev.philmythmod.item.ModItems;
 import net.minecraft.client.renderer.entity.EntityRenderers;
@@ -80,6 +76,11 @@ public class PhilippineMythMod {
             EntityRenderers.register(ModEntities.MANANANGGAL.get(), ManananggalRenderer::new);
             EntityRenderers.register(ModEntities.KAPRE.get(), KapreRenderer::new);
             EntityRenderers.register(ModEntities.MANGKUKULAM.get(), MangkukulamRenderer::new);
+            EntityRenderers.register(ModEntities.BABAYLAN.get(), BabaylanRenderer::new);
+            EntityRenderers.register(ModEntities.BERBEROKA.get(), BerberokaRenderer::new);
+            EntityRenderers.register(ModEntities.DIWATA.get(), DiwataRenderer::new);
+            EntityRenderers.register(ModEntities.NUNO.get(), NunoRenderer::new);
+            EntityRenderers.register(ModEntities.TIKBALANG.get(), TikbalangRenderer::new);
 
         }
     }

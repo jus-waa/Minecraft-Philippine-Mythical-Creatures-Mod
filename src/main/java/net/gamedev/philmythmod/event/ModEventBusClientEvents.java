@@ -16,5 +16,11 @@ public class ModEventBusClientEvents {
         event.registerLayerDefinition(ModModelLayers.MANANANGGAL_LAYER, ManananggalModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.KAPRE_LAYER, KapreModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.MANGKUKULAM_LAYER, MangkukulamModel::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BABAYLAN_LAYER, BabaylanModel::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BERBEROKA_LAYER, BerberokaModel::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.DIWATA_LAYER, DiwataModel::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.NUNO_LAYER, NunoModel::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.TIKBALANG_LAYER, TikbalangModel::createBodyLayer);
+
     }
 }

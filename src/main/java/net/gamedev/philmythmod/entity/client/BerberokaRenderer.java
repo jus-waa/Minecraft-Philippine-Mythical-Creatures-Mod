@@ -2,24 +2,24 @@ package net.gamedev.philmythmod.entity.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.gamedev.philmythmod.PhilippineMythMod;
-import net.gamedev.philmythmod.entity.boss.BakunawaBoss;
+import net.gamedev.philmythmod.entity.boss.BerberokaEntity;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 
-public class BakunawaRenderer extends MobRenderer<BakunawaBoss, Bakunawa<BakunawaBoss>> {
-    public BakunawaRenderer(EntityRendererProvider.Context pContext) {
-        super(pContext, new Bakunawa<>(pContext.bakeLayer(ModModelLayers.BAKUNAWA_LAYER)), 2f);
+public class BerberokaRenderer extends MobRenderer<BerberokaEntity, BerberokaModel<BerberokaEntity>> {
+    public BerberokaRenderer(EntityRendererProvider.Context pContext) {
+        super(pContext, new BerberokaModel<>(pContext.bakeLayer(ModModelLayers.BERBEROKA_LAYER)), 1f);
     }
 
     @Override
-    public ResourceLocation getTextureLocation(BakunawaBoss entity) {
-        return new ResourceLocation(PhilippineMythMod.MOD_ID, "textures/entity/boss/bakunawa.png");
+    public ResourceLocation getTextureLocation(BerberokaEntity entity) {
+        return new ResourceLocation(PhilippineMythMod.MOD_ID, "textures/entity/boss/berberoka.png");
     }
 
     @Override
-    public void render(BakunawaBoss entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource buffer, int packedLight) {
+    public void render(BerberokaEntity entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource buffer, int packedLight) {
         poseStack.pushPose();
 
         // Offset the model relative to the hitbox (e.g., shift it forward or upward)
