@@ -1,6 +1,7 @@
 package net.gamedev.philmythmod.entity.boss;
 
 import net.gamedev.philmythmod.entity.ai.MangkukulamAttackGoal;
+import net.gamedev.philmythmod.item.ModItems;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -29,11 +30,11 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
-public class MangkukulamEntity extends Raider implements RangedAttackMob {
+public class MangkukulamEntity extends PathfinderMob implements RangedAttackMob {
     private static final EntityDataAccessor<Boolean> ATTACKING =
             SynchedEntityData.defineId(MangkukulamEntity.class, EntityDataSerializers.BOOLEAN);
 
-    public MangkukulamEntity(EntityType<? extends Raider> pEntityType, Level pLevel) {
+    public MangkukulamEntity(EntityType<? extends PathfinderMob> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
     }
     public final AnimationState idleAnimationState = new AnimationState();
@@ -108,7 +109,8 @@ public class MangkukulamEntity extends Raider implements RangedAttackMob {
     }
     public void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new MangkukulamAttackGoal(this, 1.0D, true));
+        this.goalSelector.addGoal(1, new RangedAttackGoal(this, 1.0D, 20, 10.0F));
+        this.goalSelector.addGoal(2, new MangkukulamAttackGoal(this, 1.0D, true));
         this.goalSelector.addGoal(4, new LookAtPlayerGoal(this, Player.class, 8.0F));
         this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
         this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 1.0D));
@@ -160,14 +162,19 @@ public class MangkukulamEntity extends Raider implements RangedAttackMob {
         return 1.62F;
     }
 
-    @Override
-    public void applyRaidBuffs(int pWave, boolean pUnusedFalse) {
 
-    }
-
+    // mob drops
     @Override
-    public SoundEvent getCelebrateSound() {
-        return null;
+    protected void dropCustomDeathLoot(DamageSource pSource, int pLooting, boolean pRecentlyHit) {
+        super.dropCustomDeathLoot(pSource, pLooting, pRecentlyHit);
+
+        if (this.random.nextFloat() < 0.2F + (pLooting * 0.1F)){
+            this.spawnAtLocation(new ItemStack(ModItems.CURSED_FANG.get()));
+        }
+        if (this.random.nextFloat() < 0.5F + (pLooting * 0.1F)){ // .5f is 50%, .1f is 10%
+            int rottenFleshCount = 2 + this.random.nextInt(4);
+            this.spawnAtLocation(new ItemStack(Items.ROTTEN_FLESH), rottenFleshCount);
+        }
     }
     // Sound
     @Nullable

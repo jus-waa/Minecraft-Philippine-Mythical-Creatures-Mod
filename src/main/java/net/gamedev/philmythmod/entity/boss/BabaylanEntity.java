@@ -3,6 +3,7 @@ package net.gamedev.philmythmod.entity.boss;
 import net.gamedev.philmythmod.entity.ModEntities;
 //import net.gamedev.philmythmod.entity.ai.BabaylanAttackGoal;
 
+import net.gamedev.philmythmod.item.ModItems;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -23,6 +24,8 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.ZombifiedPiglin;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
@@ -130,6 +133,18 @@ public class BabaylanEntity extends Monster {
     }
     public boolean canSpawnSprintParticle() {
         return this.getDeltaMovement().horizontalDistanceSqr() > (double)2.5000003E-7F && this.random.nextInt(5) == 0;
+    }
+    @Override
+    protected void dropCustomDeathLoot(DamageSource pSource, int pLooting, boolean pRecentlyHit) {
+        super.dropCustomDeathLoot(pSource, pLooting, pRecentlyHit);
+
+        if (this.random.nextFloat() < 0.25F + (pLooting * 0.1F)){ // .5f is 50%, .1f is 10%
+            int emeraldCount = 2 + this.random.nextInt(5); // gets 2 to 5 eme
+            this.spawnAtLocation(new ItemStack(Items.EMERALD, emeraldCount));
+        }
+        if (this.random.nextFloat() < 0.1F + (pLooting * 0.1F)){
+            this.spawnAtLocation(new ItemStack(ModItems.KARAMBIT.get()));
+        }
     }
     // mob sounds
     @Nullable

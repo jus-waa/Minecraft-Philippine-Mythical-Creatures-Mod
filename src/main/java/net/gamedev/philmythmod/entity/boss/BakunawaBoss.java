@@ -1,6 +1,7 @@
 package net.gamedev.philmythmod.entity.boss;
 
 import net.gamedev.philmythmod.entity.ai.BakunawaAttackGoal;
+import net.gamedev.philmythmod.item.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -22,6 +23,8 @@ import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.ZombifiedPiglin;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.phys.Vec3;
@@ -109,6 +112,27 @@ public class BakunawaBoss extends Monster {
                 .add(Attributes.ATTACK_KNOCKBACK, 3.0D)
                 .add(Attributes.ARMOR, 4.0D)
                 .add(Attributes.ATTACK_DAMAGE, 30.0D);
+    }
+
+    @Override
+    protected void dropCustomDeathLoot(DamageSource pSource, int pLooting, boolean pRecentlyHit) {
+        super.dropCustomDeathLoot(pSource, pLooting, pRecentlyHit);
+
+        if (this.random.nextFloat() < 0.25F + (pLooting * 0.1F)){ // .25f is 25%, .1f is 10%
+            int netheriteCount = 3 + this.random.nextInt(10); // gets 3 to 10 eme
+            this.spawnAtLocation(new ItemStack(Items.NETHERITE_INGOT, netheriteCount));
+        }
+        if (this.random.nextFloat() < 0.25F + (pLooting * 0.1F)){
+            int diamondCount = 3 + this.random.nextInt(10);
+            this.spawnAtLocation(new ItemStack(Items.DIAMOND, diamondCount));
+        }
+        if (this.random.nextFloat() < 0.05F + (pLooting * 0.1F)){
+            this.spawnAtLocation(new ItemStack(Items.ENCHANTED_GOLDEN_APPLE));
+        }
+        if (this.random.nextFloat() < 0.5F + (pLooting * 0.1F)){
+            int moonCoreCount = 3 + this.random.nextInt(8);
+            this.spawnAtLocation(new ItemStack(ModItems.MOONCORE_SCALE.get(), moonCoreCount));
+        }
     }
     //bypass drowning
     @Override

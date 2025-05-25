@@ -2,6 +2,7 @@ package net.gamedev.philmythmod.entity.boss;
 
 import net.gamedev.philmythmod.entity.ModEntities;
 
+import net.gamedev.philmythmod.item.ModItems;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
@@ -18,6 +19,8 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.ZombifiedPiglin;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
@@ -94,6 +97,14 @@ public class DiwataEntity extends Monster {
     }
     public boolean canSpawnSprintParticle() {
         return this.getDeltaMovement().horizontalDistanceSqr() > (double)2.5000003E-7F && this.random.nextInt(5) == 0;
+    }
+    @Override
+    protected void dropCustomDeathLoot(DamageSource pSource, int pLooting, boolean pRecentlyHit) {
+        super.dropCustomDeathLoot(pSource, pLooting, pRecentlyHit);
+
+        if (this.random.nextFloat() < 0.3F + (pLooting * 0.1F)){
+            this.spawnAtLocation(new ItemStack(ModItems.FLOODGEM_HEART.get()));
+        }
     }
     // mob sounds
     @Nullable

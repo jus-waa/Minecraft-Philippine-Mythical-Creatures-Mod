@@ -3,6 +3,7 @@ package net.gamedev.philmythmod.entity.boss;
 import net.gamedev.philmythmod.entity.ModEntities;
 //import net.gamedev.philmythmod.entity.ai.TikbalangAttackGoal;
 import net.gamedev.philmythmod.entity.ai.TikbalangAttackGoal;
+import net.gamedev.philmythmod.item.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -14,6 +15,8 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Pose;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.LightLayer;
 
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -148,6 +151,18 @@ public class TikbalangEntity extends Monster {
     }
     public boolean canSpawnSprintParticle() {
         return this.getDeltaMovement().horizontalDistanceSqr() > (double)2.5000003E-7F && this.random.nextInt(5) == 0;
+    }
+    // mob drops
+    @Override
+    protected void dropCustomDeathLoot(DamageSource pSource, int pLooting, boolean pRecentlyHit) {
+        super.dropCustomDeathLoot(pSource, pLooting, pRecentlyHit);
+
+        if (this.random.nextFloat() < 0.3F + (pLooting * 0.1F)){
+            this.spawnAtLocation(new ItemStack(ModItems.TOTEM_OF_CONFUSION.get()));
+        }
+        if (this.random.nextFloat() < 0.1F + (pLooting * 0.1F)){ // .5f is 50%, .1f is 10%
+            this.spawnAtLocation(new ItemStack(Items.SADDLE));
+        }
     }
     // mob sounds
     @Nullable

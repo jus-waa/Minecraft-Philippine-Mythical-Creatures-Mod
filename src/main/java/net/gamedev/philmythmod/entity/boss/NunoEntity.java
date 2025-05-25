@@ -3,6 +3,7 @@ package net.gamedev.philmythmod.entity.boss;
 import net.gamedev.philmythmod.entity.ModEntities;
 //import net.gamedev.philmythmod.entity.ai.NunoAttackGoal;
 import net.gamedev.philmythmod.entity.ai.NunoAttackGoal;
+import net.gamedev.philmythmod.item.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -14,6 +15,8 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Pose;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.LightLayer;
 
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -120,6 +123,19 @@ public class NunoEntity extends Monster {
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, true));
 
+    }
+    // mob drops
+    @Override
+    protected void dropCustomDeathLoot(DamageSource pSource, int pLooting, boolean pRecentlyHit) {
+        super.dropCustomDeathLoot(pSource, pLooting, pRecentlyHit);
+
+        if (this.random.nextFloat() < 0.3F + (pLooting * 0.1F)){
+            this.spawnAtLocation(new ItemStack(ModItems.ANITO_STONE.get()));
+        }
+        if (this.random.nextFloat() < 0.5F + (pLooting * 0.1F)){ // .5f is 50%, .1f is 10%
+            int emeraldCount = 1 + this.random.nextInt(4);
+            this.spawnAtLocation(new ItemStack(Items.EMERALD), emeraldCount);
+        }
     }
     // attributes
     public static AttributeSupplier.Builder createAttributes() {

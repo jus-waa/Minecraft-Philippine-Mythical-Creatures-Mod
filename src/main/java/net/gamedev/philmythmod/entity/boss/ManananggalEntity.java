@@ -1,6 +1,7 @@
 package net.gamedev.philmythmod.entity.boss;
 
 import net.gamedev.philmythmod.entity.ai.ManananggalAttackGoal;
+import net.gamedev.philmythmod.item.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -20,6 +21,8 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.ZombifiedPiglin;
 
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
 import org.jetbrains.annotations.Nullable;
@@ -127,6 +130,19 @@ public class ManananggalEntity extends Monster {
                 .add(Attributes.ATTACK_DAMAGE, 13.0D)
                 .add(Attributes.ARMOR, 2.0D)
                 .add(Attributes.SPAWN_REINFORCEMENTS_CHANCE);
+    }
+    // mob drops
+    @Override
+    protected void dropCustomDeathLoot(DamageSource pSource, int pLooting, boolean pRecentlyHit) {
+        super.dropCustomDeathLoot(pSource, pLooting, pRecentlyHit);
+
+        if (this.random.nextFloat() < 0.2F + (pLooting * 0.1F)){
+            this.spawnAtLocation(new ItemStack(ModItems.WINGED_HEART.get()));
+        }
+        if (this.random.nextFloat() < 0.5F + (pLooting * 0.1F)){ // .5f is 50%, .1f is 10%
+            int rottenFleshCount = 2 + this.random.nextInt(4);
+            this.spawnAtLocation(new ItemStack(Items.ROTTEN_FLESH), rottenFleshCount);
+        }
     }
     // Sound
     @Nullable
