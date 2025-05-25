@@ -129,9 +129,9 @@ public class BakunawaBoss extends Monster {
     @Override
     protected void registerGoals() {
         this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, Player.class, true));
+        this.goalSelector.addGoal(0, new LookAtPlayerGoal(this, Player.class, 100.0F));
         this.goalSelector.addGoal(1, new BakunawaAttackGoal(this, 1.0D, true));
-        this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)).setAlertOthers(ZombifiedPiglin.class));
-        this.goalSelector.addGoal(2, new LookAtPlayerGoal(this, Player.class, 10.0F));
+        this.targetSelector.addGoal(2, (new HurtByTargetGoal(this)).setAlertOthers(ZombifiedPiglin.class));
         this.goalSelector.addGoal(3, new RandomLookAroundGoal(this));
     }
     public static AttributeSupplier.Builder createAttributes() {
@@ -192,7 +192,9 @@ public class BakunawaBoss extends Monster {
     //bypass drowning
     @Override
     public boolean isInvulnerableTo(DamageSource pDamageSource) {
-        if (pDamageSource == this.level().damageSources().drown() || pDamageSource == this.level().damageSources().lightningBolt()) {
+        if (pDamageSource == this.level().damageSources().drown()
+                || pDamageSource == this.level().damageSources().lightningBolt()
+                || pDamageSource == this.level().damageSources().onFire()) {
             return true;
         }
         return super.isInvulnerableTo(pDamageSource);

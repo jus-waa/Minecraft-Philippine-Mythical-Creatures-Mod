@@ -113,8 +113,6 @@ public class DiwataModel<T extends Entity> extends HierarchicalModel<T> {
 		// animations
 		this.animate(((DiwataEntity) entity).idleAnimationState, DiwataAnimation.idle, ageInTicks, 1f);
 		this.animateWalk(DiwataAnimation.idle, limbSwing, 1f, 2f, 2.5f);
-
-
 	}
 
 	@Override

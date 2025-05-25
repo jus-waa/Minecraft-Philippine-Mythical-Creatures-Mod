@@ -525,6 +525,9 @@ public class BakunawaAnimations {
                         new Keyframe(1.0F, KeyframeAnimations.posVec(173.0F, 50.0F, -859.0F), AnimationChannel.Interpolations.LINEAR),
                         new Keyframe(2.0F, KeyframeAnimations.posVec(173.0F, 46.0F, -859.0F), AnimationChannel.Interpolations.LINEAR)
                 ))
+                .addAnimation("bakunawa", new AnimationChannel(AnimationChannel.Targets.POSITION,
+                        new Keyframe(0.0F, KeyframeAnimations.posVec(-24.0F, 0.0F, -37.0F), AnimationChannel.Interpolations.LINEAR)
+                ))
                 .build();
 
         public static final AnimationDefinition attack = AnimationDefinition.Builder.withLength(1.0F)
