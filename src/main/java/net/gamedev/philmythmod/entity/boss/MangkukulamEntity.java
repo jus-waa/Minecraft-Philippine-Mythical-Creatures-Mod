@@ -119,44 +119,43 @@ public class MangkukulamEntity extends PathfinderMob implements RangedAttackMob 
     }
     @Override
     public void performRangedAttack(LivingEntity pTarget, float pDistanceFactor) {
-        if (this.isDrinking()) {
-            Vec3 vec3 = pTarget.getDeltaMovement();
-            double d0 = pTarget.getX() + vec3.x - this.getX();
-            double d1 = pTarget.getEyeY() - (double)1.1F - this.getY();
-            double d2 = pTarget.getZ() + vec3.z - this.getZ();
-            double d3 = Math.sqrt(d0 * d0 + d2 * d2);
-            Potion potion = Potions.HARMING;
-            if (pTarget instanceof Raider) {
-                if (pTarget.getHealth() <= 4.0F) {
-                    potion = Potions.INVISIBILITY;
-                } else {
-                    potion = Potions.LONG_REGENERATION;
-                }
+        Vec3 vec3 = pTarget.getDeltaMovement();
+        double d0 = pTarget.getX() + vec3.x - this.getX();
+        double d1 = pTarget.getEyeY() - 1.1F - this.getY();
+        double d2 = pTarget.getZ() + vec3.z - this.getZ();
+        double d3 = Math.sqrt(d0 * d0 + d2 * d2);
 
-                this.setTarget((LivingEntity)null);
-            } else if (d3 >= 8.0D && !pTarget.hasEffect(MobEffects.MOVEMENT_SLOWDOWN)) {
-                potion = Potions.STRONG_SLOWNESS;
-            } else if (pTarget.getHealth() >= 8.0F) {
-                potion = Potions.STRONG_HARMING;
-            } else if (d3 <= 3.0D && !pTarget.hasEffect(MobEffects.WEAKNESS) && this.random.nextFloat() < 0.25F) {
-                potion = Potions.WEAKNESS;
+        Potion potion = Potions.HARMING;
+
+        if (pTarget instanceof Raider) {
+            if (pTarget.getHealth() <= 4.0F) {
+                potion = Potions.INVISIBILITY;
+            } else {
+                potion = Potions.LONG_REGENERATION;
             }
-
-            ThrownPotion thrownpotion = new ThrownPotion(this.level(), this);
-            thrownpotion.setItem(PotionUtils.setPotion(new ItemStack(Items.SPLASH_POTION), potion));
-            thrownpotion.setXRot(thrownpotion.getXRot() - -20.0F);
-            thrownpotion.shoot(d0, d1 + d3 * 0.2D, d2, 0.75F, 8.0F);
-            if (!this.isSilent()) {
-                this.level().playSound((Player)null, this.getX(), this.getY(), this.getZ(), SoundEvents.WITCH_THROW, this.getSoundSource(), 1.0F, 0.8F + this.random.nextFloat() * 0.4F);
-            }
-
-            this.level().addFreshEntity(thrownpotion);
+            this.setTarget(null);
+        } else if (d3 >= 8.0D && !pTarget.hasEffect(MobEffects.MOVEMENT_SLOWDOWN)) {
+            potion = Potions.STRONG_SLOWNESS;
+        } else if (pTarget.getHealth() >= 8.0F) {
+            potion = Potions.STRONG_HARMING;
+        } else if (d3 <= 3.0D && !pTarget.hasEffect(MobEffects.WEAKNESS) && this.random.nextFloat() < 0.25F) {
+            potion = Potions.WEAKNESS;
         }
+
+        ThrownPotion potionEntity = new ThrownPotion(this.level(), this);
+        potionEntity.setItem(PotionUtils.setPotion(new ItemStack(Items.SPLASH_POTION), potion));
+        potionEntity.setXRot(potionEntity.getXRot() - -20.0F);
+        potionEntity.shoot(d0, d1 + d3 * 0.2D, d2, 0.75F, 8.0F);
+
+        if (!this.isSilent()) {
+            this.level().playSound(null, this.getX(), this.getY(), this.getZ(),
+                    SoundEvents.WITCH_THROW, this.getSoundSource(), 1.0F, 0.8F + this.random.nextFloat() * 0.4F);
+        }
+
+        this.level().addFreshEntity(potionEntity);
     }
 
-    private boolean isDrinking() {
-        return false;
-    }
+
 
     protected float getStandingEyeHeight(Pose pPose, EntityDimensions pSize) {
         return 1.62F;
@@ -175,6 +174,30 @@ public class MangkukulamEntity extends PathfinderMob implements RangedAttackMob 
             int rottenFleshCount = 2 + this.random.nextInt(4);
             this.spawnAtLocation(new ItemStack(Items.ROTTEN_FLESH), rottenFleshCount);
         }
+        if (!this.level().isClientSide) {
+            int xp = this.getExperienceReward();
+            this.level().addFreshEntity(new ExperienceOrb(this.level(), this.getX(), this.getY(), this.getZ(), xp));
+        }
+    }
+    @Override
+    protected void tickDeath() {
+        ++this.deathTime;
+
+        if (this.deathTime >= 60 && !this.level().isClientSide()) {
+            this.remove(RemovalReason.KILLED);
+            this.dropExperience(); // Or whatever you want to do post-death
+        }
+    }
+    //exp
+    @Override
+    public int getExperienceReward() {
+        super.getExperienceReward();
+        return 5 + this.random.nextInt(6);
+    }
+
+    @Override
+    public boolean shouldDropExperience() {
+        return true;
     }
     // Sound
     @Nullable

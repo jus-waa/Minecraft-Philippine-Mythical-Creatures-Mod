@@ -10,7 +10,7 @@ import net.minecraft.resources.ResourceLocation;
 
 public class BakunawaRenderer extends MobRenderer<BakunawaBoss, Bakunawa<BakunawaBoss>> {
     public BakunawaRenderer(EntityRendererProvider.Context pContext) {
-        super(pContext, new Bakunawa<>(pContext.bakeLayer(ModModelLayers.BAKUNAWA_LAYER)), 2f);
+        super(pContext, new Bakunawa<>(pContext.bakeLayer(ModModelLayers.BAKUNAWA_LAYER)), 20f);
     }
 
     @Override

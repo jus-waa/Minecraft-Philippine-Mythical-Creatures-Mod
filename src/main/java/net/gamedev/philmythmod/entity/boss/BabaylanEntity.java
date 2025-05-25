@@ -13,6 +13,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.Pose;
 
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -145,6 +146,30 @@ public class BabaylanEntity extends Monster {
         if (this.random.nextFloat() < 0.1F + (pLooting * 0.1F)){
             this.spawnAtLocation(new ItemStack(ModItems.KARAMBIT.get()));
         }
+        if (!this.level().isClientSide) {
+            int xp = this.getExperienceReward();
+            this.level().addFreshEntity(new ExperienceOrb(this.level(), this.getX(), this.getY(), this.getZ(), xp));
+        }
+    }
+    @Override
+    protected void tickDeath() {
+        ++this.deathTime;
+
+        if (this.deathTime >= 30 && !this.level().isClientSide()) {
+            this.remove(RemovalReason.KILLED);
+            this.dropExperience(); // Or whatever you want to do post-death
+        }
+    }
+    //exp
+    @Override
+    public int getExperienceReward() {
+        super.getExperienceReward();
+        return 5 + this.random.nextInt(6);
+    }
+
+    @Override
+    public boolean shouldDropExperience() {
+        return true;
     }
     // mob sounds
     @Nullable

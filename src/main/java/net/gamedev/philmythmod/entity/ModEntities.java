@@ -16,7 +16,7 @@ public class ModEntities {
 
     public static final RegistryObject<EntityType<BakunawaBoss>> BAKUNAWA =
             ENTITY_TYPES.register("bakunawa", () -> EntityType.Builder.of(BakunawaBoss::new, MobCategory.WATER_CREATURE)
-                    .sized(30.0f, 35.0f).build("bakunawa"));
+                    .sized(25.0f, 25.0f).build("bakunawa"));
     public static final RegistryObject<EntityType<AswangEntity>> ASWANG =
             ENTITY_TYPES.register("aswang", () -> EntityType.Builder.of(AswangEntity::new, MobCategory.MONSTER)
                     .sized(0.8f, 1.7f).build("aswang"));

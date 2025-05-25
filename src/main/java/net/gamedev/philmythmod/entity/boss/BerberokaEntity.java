@@ -133,7 +133,7 @@ public class BerberokaEntity extends Monster {
     @Override
     protected void dropCustomDeathLoot(DamageSource pSource, int pLooting, boolean pRecentlyHit) {
         super.dropCustomDeathLoot(pSource, pLooting, pRecentlyHit);
-
+        //loot
         if (this.random.nextFloat() < 0.25F + (pLooting * 0.1F)){
             int diamondCount = 3 + this.random.nextInt(10);
             this.spawnAtLocation(new ItemStack(Items.DIAMOND, diamondCount));
@@ -149,6 +149,31 @@ public class BerberokaEntity extends Monster {
             int moonCoreCount = 3 + this.random.nextInt(8);
             this.spawnAtLocation(new ItemStack(ModItems.MOONCORE_SCALE.get(), moonCoreCount));
         }
+        //exp
+        if (!this.level().isClientSide) {
+            int xp = this.getExperienceReward();
+            this.level().addFreshEntity(new ExperienceOrb(this.level(), this.getX(), this.getY(), this.getZ(), xp));
+        }
+    }
+    @Override
+    protected void tickDeath() {
+        ++this.deathTime;
+
+        if (this.deathTime >= 60 && !this.level().isClientSide()) {
+            this.remove(RemovalReason.KILLED);
+            this.dropExperience(); // Or whatever you want to do post-death
+        }
+    }
+    //exp
+    @Override
+    public int getExperienceReward() {
+        super.getExperienceReward();
+        return 2000 + this.random.nextInt(7000);
+    }
+
+    @Override
+    public boolean shouldDropExperience() {
+        return true;
     }
     //bypass drowning
     @Override

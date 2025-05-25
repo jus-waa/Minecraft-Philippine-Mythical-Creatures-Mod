@@ -33,6 +33,8 @@ import java.util.function.Predicate;
 
 
 public class BakunawaBoss extends Monster {
+    private int lightningCooldown = 10;
+
     private final ServerBossEvent bossEvent = (ServerBossEvent)(new ServerBossEvent(Component.literal("Bakunawa"), BossEvent.BossBarColor.BLUE, BossEvent.BossBarOverlay.NOTCHED_20)).setDarkenScreen(true);
     private static final EntityDataAccessor<Boolean> ATTACKING =
             SynchedEntityData.defineId(BakunawaBoss.class, EntityDataSerializers.BOOLEAN);
@@ -53,6 +55,34 @@ public class BakunawaBoss extends Monster {
         super.tick();
         if (this.level().isClientSide()) {
             setupAnimationStates();
+        }
+        if (!this.level().isClientSide()) {
+            if (lightningCooldown <= 0) {
+                summonLightning();
+                lightningCooldown = 10; // 1 second cooldown
+            } else {
+                lightningCooldown--;
+            }
+        }
+    }
+    private void summonLightning() {
+        if (!this.level().isClientSide()) {
+            // summons around 5 blocks
+            int radius = 25;
+
+            // Random offsets
+            double offsetX = (this.random.nextDouble() * 2 - 1) * radius;
+            double offsetZ = (this.random.nextDouble() * 2 - 1) * radius;
+
+            double lightningX = this.getX() + offsetX;
+            double lightningY = this.getY();
+            double lightningZ = this.getZ() + offsetZ;
+
+            LightningBolt lightning = EntityType.LIGHTNING_BOLT.create(this.level());
+            if (lightning != null) {
+                lightning.moveTo(lightningX, lightningY, lightningZ);
+                this.level().addFreshEntity(lightning);
+            }
         }
     }
     //setting up animations (idle)
@@ -133,7 +163,32 @@ public class BakunawaBoss extends Monster {
             int moonCoreCount = 3 + this.random.nextInt(8);
             this.spawnAtLocation(new ItemStack(ModItems.MOONCORE_SCALE.get(), moonCoreCount));
         }
+        if (!this.level().isClientSide) {
+            int xp = this.getExperienceReward();
+            this.level().addFreshEntity(new ExperienceOrb(this.level(), this.getX(), this.getY(), this.getZ(), xp));
+        }
     }
+    @Override
+    protected void tickDeath() {
+        ++this.deathTime;
+
+        if (this.deathTime >= 0 && !this.level().isClientSide()) {
+            this.remove(RemovalReason.KILLED);
+            this.dropExperience(); // Or whatever you want to do post-death
+        }
+    }
+    //exp
+    @Override
+    public int getExperienceReward() {
+        super.getExperienceReward();
+        return 10000 + this.random.nextInt(20000);
+    }
+
+    @Override
+    public boolean shouldDropExperience() {
+        return true;
+    }
+
     //bypass drowning
     @Override
     public boolean isInvulnerableTo(DamageSource pDamageSource) {

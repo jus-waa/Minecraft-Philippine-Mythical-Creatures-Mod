@@ -119,6 +119,26 @@ public class KapreEntity extends AbstractGolem implements NeutralMob {
                 .add(Attributes.ARMOR_TOUGHNESS, 0.5f)
                 .add(Attributes.ATTACK_DAMAGE, 15.0D);
     }
+    @Override
+    protected void tickDeath() {
+        ++this.deathTime;
+
+        if (this.deathTime >= 60 && !this.level().isClientSide()) {
+            this.remove(RemovalReason.KILLED);
+            this.dropExperience(); // Or whatever you want to do post-death
+        }
+    }
+    //exp
+    @Override
+    public int getExperienceReward() {
+        super.getExperienceReward();
+        return 10 + this.random.nextInt(15);
+    }
+
+    @Override
+    public boolean shouldDropExperience() {
+        return true;
+    }
     public boolean canSpawnSprintParticle() {
         return this.getDeltaMovement().horizontalDistanceSqr() > (double)2.5000003E-7F && this.random.nextInt(5) == 0;
     }
