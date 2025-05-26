@@ -1,6 +1,7 @@
 package net.gamedev.philmythmod.entity.boss;
 
 import net.gamedev.philmythmod.entity.ai.KapreAttackGoal;
+import net.gamedev.philmythmod.item.ModItems;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -20,6 +21,8 @@ import net.minecraft.world.entity.animal.AbstractGolem;
 import net.minecraft.world.entity.monster.ZombifiedPiglin;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
@@ -119,11 +122,29 @@ public class KapreEntity extends AbstractGolem implements NeutralMob {
                 .add(Attributes.ARMOR_TOUGHNESS, 0.5f)
                 .add(Attributes.ATTACK_DAMAGE, 15.0D);
     }
+    // mob drops
+    @Override
+    protected void dropCustomDeathLoot(DamageSource pSource, int pLooting, boolean pRecentlyHit) {
+        super.dropCustomDeathLoot(pSource, pLooting, pRecentlyHit);
+        //loot
+        if (this.random.nextFloat() < 0.5F + (pLooting * 0.1F)){
+            this.spawnAtLocation(new ItemStack(ModItems.CIGARETTE.get()));
+        }
+        if (this.random.nextFloat() < 0.5F + (pLooting * 0.1F)){ // .5f is 50%, .1f is 10%
+            int junglePlanksCount = 2 + this.random.nextInt(4);
+            this.spawnAtLocation(new ItemStack(Items.JUNGLE_PLANKS), junglePlanksCount);
+        }
+        //exp
+        if (!this.level().isClientSide) {
+            int xp = this.getExperienceReward();
+            this.level().addFreshEntity(new ExperienceOrb(this.level(), this.getX(), this.getY(), this.getZ(), xp));
+        }
+    }
     @Override
     protected void tickDeath() {
         ++this.deathTime;
 
-        if (this.deathTime >= 60 && !this.level().isClientSide()) {
+        if (this.deathTime >= 20 && !this.level().isClientSide()) {
             this.remove(RemovalReason.KILLED);
             this.dropExperience(); // Or whatever you want to do post-death
         }
