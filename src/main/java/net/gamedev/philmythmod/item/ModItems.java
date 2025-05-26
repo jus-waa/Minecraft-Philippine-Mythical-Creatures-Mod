@@ -120,6 +120,9 @@ public class ModItems {
     public static final RegistryObject<Item> TIKBALANG_SPAWN_EGG = ITEMS.register("tikbalang_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntities.TIKBALANG, 0x7e9680, 0xc5d1c5,
                     new Item.Properties()));
+    public static final RegistryObject<Item> SARIMANOK_SPAWN_EGG = ITEMS.register("sarimanok_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.SARIMANOK, 0x7e9680, 0xc5d1c5,
+                    new Item.Properties()));
     // mooncore weapons
     public static final RegistryObject<Item> KARAMBIT = ITEMS.register("karambit",
             () -> new SwordItem(ModToolTiers.MOONCORE_SCALE, 2, -1F, new Item.Properties().fireResistant().setNoRepair()));

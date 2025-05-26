@@ -138,7 +138,6 @@ public class AswangEntity extends Monster {
         this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setAlertOthers(ZombifiedPiglin.class));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, true));
-
     }
     // attributes
     public static AttributeSupplier.Builder createAttributes() {

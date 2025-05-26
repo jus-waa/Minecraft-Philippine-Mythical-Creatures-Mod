@@ -44,6 +44,9 @@ public class ModEntities {
     public static final RegistryObject<EntityType<TikbalangEntity>> TIKBALANG =
             ENTITY_TYPES.register("tikbalang", () -> EntityType.Builder.of(TikbalangEntity::new, MobCategory.MONSTER)
                     .sized(1.0f, 2.8f).build("tikbalang"));
+    public static final RegistryObject<EntityType<SarimanokEntity>> SARIMANOK =
+            ENTITY_TYPES.register("sarimanok", () -> EntityType.Builder.of(SarimanokEntity::new, MobCategory.MONSTER)
+                    .sized(0.5f, 0.5f).build("sarimanok"));
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);
     }

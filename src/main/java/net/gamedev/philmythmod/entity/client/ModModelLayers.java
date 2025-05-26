@@ -25,5 +25,7 @@ public class ModModelLayers {
             new ResourceLocation(PhilippineMythMod.MOD_ID, "nuno_layer"), "main");
     public static final ModelLayerLocation TIKBALANG_LAYER = new ModelLayerLocation(
             new ResourceLocation(PhilippineMythMod.MOD_ID, "tikbalang_layer"), "main");
+    public static final ModelLayerLocation SARIMANOK_LAYER = new ModelLayerLocation(
+            new ResourceLocation(PhilippineMythMod.MOD_ID, "sarimanok_layer"), "main");
 
 }

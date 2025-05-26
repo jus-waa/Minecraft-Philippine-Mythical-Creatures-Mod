@@ -23,6 +23,6 @@ public class ModEventBusClientEvents {
         event.registerLayerDefinition(ModModelLayers.DIWATA_LAYER, DiwataModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.NUNO_LAYER, NunoModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.TIKBALANG_LAYER, TikbalangModel::createBodyLayer);
-
+        event.registerLayerDefinition(ModModelLayers.SARIMANOK_LAYER, SarimanokModel::createBodyLayer);
     }
 }

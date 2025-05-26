@@ -81,7 +81,7 @@ public class PhilippineMythMod {
             EntityRenderers.register(ModEntities.DIWATA.get(), DiwataRenderer::new);
             EntityRenderers.register(ModEntities.NUNO.get(), NunoRenderer::new);
             EntityRenderers.register(ModEntities.TIKBALANG.get(), TikbalangRenderer::new);
-
+            EntityRenderers.register(ModEntities.SARIMANOK.get(), SarimanokRenderer::new);
         }
     }
 }
