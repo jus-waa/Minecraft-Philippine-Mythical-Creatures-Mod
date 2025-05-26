@@ -134,6 +134,8 @@ public class ModItems {
             () -> new SwordItem(ModToolTiers.MOONCORE_SCALE, 5, -2.8F, new Item.Properties().fireResistant().setNoRepair()));
     public static final RegistryObject<Item> BOLO = ITEMS.register("bolo",
             () -> new SwordItem(ModToolTiers.MOONCORE_SCALE, 6, -3F, new Item.Properties().fireResistant().setNoRepair()));
+    public static final RegistryObject<Item> KAMPILAN = ITEMS.register("kampilan",
+            () -> new SwordItem(ModToolTiers.MOONCORE_SCALE, 6, -2.4F, new Item.Properties().fireResistant().setNoRepair()));
     public static final RegistryObject<Item> KALASAG = ITEMS.register("kalasag",
             () -> new ShieldItem(new Item.Properties().durability(1008).fireResistant().setNoRepair()));
     // reminder:

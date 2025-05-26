@@ -45,6 +45,7 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModItems.BOLO.get());
                         pOutput.accept(ModItems.KRISS.get());
                         pOutput.accept(ModItems.SIBAT.get());
+                        pOutput.accept(ModItems.KAMPILAN.get());
                         pOutput.accept(ModItems.KALASAG.get());
 
                     })
