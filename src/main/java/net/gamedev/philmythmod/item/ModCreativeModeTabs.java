@@ -24,6 +24,7 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModItems.ANITO_STONE.get());
                         pOutput.accept(ModItems.FLOODGEM_HEART.get());
                         pOutput.accept(ModItems.MOONCORE_SCALE.get());
+                        pOutput.accept(ModItems.CIGARETTE.get());
 
                         // spawn eggs
                         pOutput.accept(ModItems.BAKUNAWA_SPAWN_EGG.get());

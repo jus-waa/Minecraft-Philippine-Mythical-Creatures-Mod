@@ -3,6 +3,8 @@ package net.gamedev.philmythmod.event;
 import net.gamedev.philmythmod.PhilippineMythMod;
 import net.gamedev.philmythmod.entity.ModEntities;
 import net.gamedev.philmythmod.entity.boss.*;
+import net.minecraft.world.entity.player.Player;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
