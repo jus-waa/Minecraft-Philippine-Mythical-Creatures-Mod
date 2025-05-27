@@ -1,6 +1,7 @@
 package net.gamedev.philmythmod.item;
 
 import net.gamedev.philmythmod.PhilippineMythMod;
+import net.gamedev.philmythmod.block.ModBlocks;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -47,6 +48,9 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModItems.SIBAT.get());
                         pOutput.accept(ModItems.KAMPILAN.get());
                         pOutput.accept(ModItems.KALASAG.get());
+
+                        // func blocks
+                        pOutput.accept(ModBlocks.INCENSE_TABLE_BLOCK.get());
 
                     })
                     .build());

@@ -1,8 +1,10 @@
 package net.gamedev.philmythmod;
 
 import com.mojang.logging.LogUtils;
+import net.gamedev.philmythmod.block.ModBlocks;
 import net.gamedev.philmythmod.entity.ModEntities;
 import net.gamedev.philmythmod.entity.client.*;
+import net.gamedev.philmythmod.entity.villager.ModVillagers;
 import net.gamedev.philmythmod.item.ModCreativeModeTabs;
 import net.gamedev.philmythmod.item.ModItems;
 import net.minecraft.client.renderer.entity.EntityRenderers;
@@ -32,7 +34,9 @@ public class PhilippineMythMod {
 
         // Ensure Deferred Reigster is properly registered.
         ModItems.register(modEventBus);
+        ModBlocks.register(modEventBus);
         ModEntities.register(modEventBus);
+        ModVillagers.register(modEventBus);
 
         // Creative Mode Tabs
         ModCreativeModeTabs.register(modEventBus);

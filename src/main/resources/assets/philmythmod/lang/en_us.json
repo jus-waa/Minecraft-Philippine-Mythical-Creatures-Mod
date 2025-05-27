@@ -27,5 +27,9 @@
   "item.philmythmod.kampilan": "Kampilan",
   "item.philmythmod.kalasag": "Kalasag",
 
+  "block.philmythmod.incense_table_block": "Incense Table",
+
+  "entity.minecraft.villager.philmythmod.albularyo_villager": "Albularyo",
+
   "creativetab.philippine_mythical_mod_tab": "Elementalika: Eclipse of Bakunawa"
 }
