@@ -23,8 +23,11 @@ public class ModVillagers {
 
         public static final RegistryObject<VillagerProfession> ALBULARYO_VILLAGER =
                 VILLAGER_PROFESSIONS.register("albularyo_villager", () -> new VillagerProfession("albularyo_villager",
-                        holder -> holder.get() == INCENSE_TABLE_POI.get(), holder ->  holder.get() == INCENSE_TABLE_POI.get(),
-                        ImmutableSet.of(), ImmutableSet.of(), SoundEvents.VILLAGER_WORK_LIBRARIAN));
+                        holder -> holder.get() == INCENSE_TABLE_POI.get(),
+                        holder -> holder.get() == INCENSE_TABLE_POI.get(),
+                        ImmutableSet.of(),
+                        ImmutableSet.of(),
+                        SoundEvents.VILLAGER_WORK_LIBRARIAN));
 
         public static void register(IEventBus eventBus) {
                 POI_TYPES.register(eventBus);
