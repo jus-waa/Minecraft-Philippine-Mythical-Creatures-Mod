@@ -160,7 +160,7 @@ public class TikbalangModel<T extends Entity> extends HierarchicalModel<T> {
 
 		// animations
 		this.animate(((TikbalangEntity) entity).idleAnimationState, TikbalangAnimation.idle, ageInTicks, 1f);
-		this.animateWalk(TikbalangAnimation.walk, limbSwing, 1f, 2f, 2.5f);
+		this.animateWalk(TikbalangAnimation.walk, limbSwing, limbSwingAmount, 2f, 2.5f);
 		this.animate(((TikbalangEntity) entity).attackAnimationState, TikbalangAnimation.attack, ageInTicks, 1f);
 	}
 

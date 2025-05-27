@@ -130,7 +130,7 @@ public class NunoEntity extends Monster {
     protected void dropCustomDeathLoot(DamageSource pSource, int pLooting, boolean pRecentlyHit) {
         super.dropCustomDeathLoot(pSource, pLooting, pRecentlyHit);
 
-        if (this.random.nextFloat() < 0.3F + (pLooting * 0.1F)){
+        if (this.random.nextFloat() < 0.1F + (pLooting * 0.1F)){ // 10% chance
             this.spawnAtLocation(new ItemStack(ModItems.ANITO_STONE.get()));
         }
         if (this.random.nextFloat() < 0.5F + (pLooting * 0.1F)){ // .5f is 50%, .1f is 10%

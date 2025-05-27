@@ -22,6 +22,7 @@ public class ModEventBusEvents {
         event.put(ModEntities.BERBEROKA.get(), BerberokaEntity.createAttributes().build());
         event.put(ModEntities.DIWATA.get(), DiwataEntity.createAttributes().build());
         event.put(ModEntities.NUNO.get(), NunoEntity.createAttributes().build());
+        event.put(ModEntities.TIKBALANG.get(), TikbalangEntity.createAttributes().build());
         event.put(ModEntities.SARIMANOK.get(), SarimanokEntity.createAttributes().build());
     }
 
