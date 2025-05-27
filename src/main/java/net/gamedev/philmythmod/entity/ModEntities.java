@@ -46,7 +46,7 @@ public class ModEntities {
                     .sized(1.0f, 2.8f).build("tikbalang"));
     public static final RegistryObject<EntityType<SarimanokEntity>> SARIMANOK =
             ENTITY_TYPES.register("sarimanok", () -> EntityType.Builder.of(SarimanokEntity::new, MobCategory.MONSTER)
-                    .sized(0.5f, 0.5f).build("sarimanok"));
+                    .sized(1.5f, 1.5f).build("sarimanok"));
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);
     }
