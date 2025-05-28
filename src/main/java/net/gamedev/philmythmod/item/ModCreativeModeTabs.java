@@ -51,6 +51,7 @@ public class ModCreativeModeTabs {
 
                         // func blocks
                         pOutput.accept(ModBlocks.INCENSE_TABLE_BLOCK.get());
+                        pOutput.accept(ModBlocks.SKYMIRROR_KEYSTONE.get());
 
                     })
                     .build());

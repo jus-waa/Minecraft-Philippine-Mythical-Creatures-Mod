@@ -2,6 +2,7 @@ package net.gamedev.philmythmod.block;
 
 import net.gamedev.philmythmod.PhilippineMythMod;
 import net.gamedev.philmythmod.block.custom.IncenseTable;
+import net.gamedev.philmythmod.block.custom.SkymirrorKeystone;
 import net.gamedev.philmythmod.item.ModItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -21,7 +22,9 @@ public class ModBlocks {
             DeferredRegister.create(ForgeRegistries.BLOCKS, PhilippineMythMod.MOD_ID);
 
     public static final RegistryObject<Block> INCENSE_TABLE_BLOCK = registerBlock("incense_table_block",
-            () -> new IncenseTable(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS). sound(SoundType.BAMBOO)));
+            () -> new IncenseTable(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).sound(SoundType.BAMBOO)));
+    public static final RegistryObject<Block> SKYMIRROR_KEYSTONE = registerBlock("skymirror_keystone",
+            () -> new SkymirrorKeystone(BlockBehaviour.Properties.copy(Blocks.ENCHANTING_TABLE).noLootTable().noOcclusion().noCollission()));
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
