@@ -1,0 +1,11 @@
+{
+  "type": "philmythmod:celestial_ocean_type",
+  "generator": {
+    "type": "minecraft:noise",
+    "biome_source": {
+      "type": "minecraft:fixed",
+      "biome": "minecraft:cold_ocean"
+    },
+    "settings": "minecraft:large_biomes"
+  }
+}
