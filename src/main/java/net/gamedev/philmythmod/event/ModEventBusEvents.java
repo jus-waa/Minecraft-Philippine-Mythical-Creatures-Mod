@@ -3,9 +3,14 @@ package net.gamedev.philmythmod.event;
 import net.gamedev.philmythmod.PhilippineMythMod;
 import net.gamedev.philmythmod.entity.ModEntities;
 import net.gamedev.philmythmod.entity.boss.*;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.SpawnPlacements;
+import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
+import net.minecraftforge.event.entity.SpawnPlacementRegisterEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -24,6 +29,12 @@ public class ModEventBusEvents {
         event.put(ModEntities.NUNO.get(), NunoEntity.createAttributes().build());
         event.put(ModEntities.TIKBALANG.get(), TikbalangEntity.createAttributes().build());
         event.put(ModEntities.SARIMANOK.get(), SarimanokEntity.createAttributes().build());
+    }
+
+    @SubscribeEvent
+    public static void registerSpawnPlacements(SpawnPlacementRegisterEvent event) {
+        event.register(ModEntities.KAPRE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                Mob::checkMobSpawnRules, SpawnPlacementRegisterEvent.Operation.OR);
     }
 
 }
