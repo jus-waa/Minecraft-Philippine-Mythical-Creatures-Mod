@@ -12,6 +12,7 @@ import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
@@ -28,6 +29,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.phys.AABB;
 import org.jetbrains.annotations.Nullable;
 import java.util.function.Predicate;
 
@@ -108,6 +111,14 @@ public class BerberokaEntity extends Monster {
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(ATTACKING, false);
+    }
+    public static boolean canSpawn(EntityType<BakunawaBoss> type, LevelAccessor level, MobSpawnType reason, BlockPos pos, RandomSource random) {
+        int radius = 32;
+        AABB checkArea = new AABB(pos).inflate(radius);
+        boolean alreadyExists = !level.getEntitiesOfClass(BerberokaEntity.class, checkArea).isEmpty();
+        if (pos.getY() < level.getSeaLevel()) return false;
+
+        return !alreadyExists && Mob.checkMobSpawnRules(type, level, reason, pos, random);
     }
     @Override
     protected void registerGoals() {

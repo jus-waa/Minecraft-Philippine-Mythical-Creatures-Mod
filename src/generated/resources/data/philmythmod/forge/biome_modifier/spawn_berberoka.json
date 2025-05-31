@@ -1,0 +1,13 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": [
+    "minecraft:swamp",
+    "minecraft:mangrove_swamp"
+  ],
+  "spawners": {
+    "type": "philmythmod:berberoka",
+    "maxCount": 3,
+    "minCount": 2,
+    "weight": 5
+  }
+}

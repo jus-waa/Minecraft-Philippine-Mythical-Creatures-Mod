@@ -11,6 +11,7 @@ import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
@@ -26,9 +27,14 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
+import java.util.Random;
 import java.util.function.Predicate;
 
 
@@ -114,6 +120,17 @@ public class BakunawaBoss extends Monster {
             this.deathAnimationState.start(this.tickCount);
         }
     }
+
+    public static boolean canSpawn(EntityType<BakunawaBoss> type, LevelAccessor level, MobSpawnType reason, BlockPos pos, RandomSource random) {
+        // Only allow spawning if there are no other Bakunawas within 1028 blocks
+        int radius = 2048;
+        AABB checkArea = new AABB(pos).inflate(radius);
+        boolean alreadyExists = !level.getEntitiesOfClass(BakunawaBoss.class, checkArea).isEmpty();
+        if (pos.getY() < level.getSeaLevel()) return false;
+
+        return !alreadyExists && Mob.checkMobSpawnRules(type, level, reason, pos, random);
+    }
+
     //attacking
     public void setAttacking(boolean attacking) {
         this.entityData.set(ATTACKING, attacking);

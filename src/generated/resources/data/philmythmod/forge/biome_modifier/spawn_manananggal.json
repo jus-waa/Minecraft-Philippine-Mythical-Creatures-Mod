@@ -1,13 +1,13 @@
 {
   "type": "forge:add_spawns",
   "biomes": [
-    "minecraft:forest",
+    "minecraft:plains",
     "minecraft:jungle"
   ],
   "spawners": {
-    "type": "philmythmod:kapre",
-    "maxCount": 3,
+    "type": "philmythmod:manananggal",
+    "maxCount": 2,
     "minCount": 1,
-    "weight": 10
+    "weight": 15
   }
 }

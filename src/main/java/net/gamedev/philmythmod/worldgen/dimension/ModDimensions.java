@@ -29,11 +29,10 @@ public class ModDimensions {
     public static final ResourceKey<DimensionType> CELESTIAL_OCEAN_TYPE = ResourceKey.create(Registries.DIMENSION_TYPE,
             new ResourceLocation(PhilippineMythMod.MOD_ID, "celestial_ocean_type"));
 
-
     public static void bootstrapType(BootstapContext<DimensionType> context) {
         context.register(CELESTIAL_OCEAN_TYPE, new DimensionType(
-                OptionalLong.of(12000), // fixedTime
-                true, // hasSkylight
+                OptionalLong.of(18000), // fixedTime
+                false, // hasSkylight
                 false, // hasCeiling
                 false, // ultraWarm
                 false, // natural
@@ -58,7 +57,7 @@ public class ModDimensions {
                 dimTypes.getOrThrow(CELESTIAL_OCEAN_TYPE),
                 new NoiseBasedChunkGenerator(
                         new FixedBiomeSource(biomeRegistry.getOrThrow(Biomes.COLD_OCEAN)),
-                        noiseGenSettings.getOrThrow(NoiseGeneratorSettings.LARGE_BIOMES) // TEMPORARY test for void-like ocean
+                        noiseGenSettings.getOrThrow(NoiseGeneratorSettings.LARGE_BIOMES)
                 )
         );
 

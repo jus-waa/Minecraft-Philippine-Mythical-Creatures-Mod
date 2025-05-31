@@ -3,13 +3,12 @@ package net.gamedev.philmythmod.entity.boss;
 import net.gamedev.philmythmod.entity.ModEntities;
 
 import net.gamedev.philmythmod.item.ModItems;
+import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.AnimationState;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.ExperienceOrb;
-import net.minecraft.world.entity.Pose;
+import net.minecraft.world.entity.*;
 
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -23,6 +22,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.phys.AABB;
 import org.jetbrains.annotations.Nullable;
 
 public class DiwataEntity extends Monster {
@@ -97,6 +98,15 @@ public class DiwataEntity extends Monster {
     }
     public boolean canSpawnSprintParticle() {
         return this.getDeltaMovement().horizontalDistanceSqr() > (double)2.5000003E-7F && this.random.nextInt(5) == 0;
+    }
+    public static boolean canSpawn(EntityType<BakunawaBoss> type, LevelAccessor level, MobSpawnType reason, BlockPos pos, RandomSource random) {
+
+        int radius = 32;
+        AABB checkArea = new AABB(pos).inflate(radius);
+        boolean alreadyExists = !level.getEntitiesOfClass(DiwataEntity.class, checkArea).isEmpty();
+        if (pos.getY() < level.getSeaLevel()) return false;
+
+        return !alreadyExists && Mob.checkMobSpawnRules(type, level, reason, pos, random);
     }
     @Override
     protected void dropCustomDeathLoot(DamageSource pSource, int pLooting, boolean pRecentlyHit) {
