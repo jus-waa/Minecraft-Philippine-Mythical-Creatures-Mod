@@ -59,7 +59,7 @@ public class ModBiomeModifiers {
 
         context.register(SPAWN_BERBEROKA, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
                 HolderSet.direct(biomes.getOrThrow(Biomes.SWAMP), biomes.getOrThrow(Biomes.MANGROVE_SWAMP)),
-                List.of(new MobSpawnSettings.SpawnerData(ModEntities.BERBEROKA.get(), 5, 2, 3))));
+                List.of(new MobSpawnSettings.SpawnerData(ModEntities.BERBEROKA.get(), 5, 1, 1))));
 
         context.register(SPAWN_DIWATA, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
                 HolderSet.direct(biomes.getOrThrow(Biomes.FOREST), biomes.getOrThrow(Biomes.BIRCH_FOREST)),
