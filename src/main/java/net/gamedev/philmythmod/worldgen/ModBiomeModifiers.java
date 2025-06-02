@@ -42,15 +42,15 @@ public class ModBiomeModifiers {
                 List.of(new MobSpawnSettings.SpawnerData(ModEntities.BAKUNAWA.get(), 1, 1, 1))
         ));
         context.register(SPAWN_ASWANG, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
-                HolderSet.direct(biomes.getOrThrow(Biomes.PLAINS)),
+                HolderSet.direct(biomes.getOrThrow(Biomes.PLAINS), biomes.getOrThrow(Biomes.FOREST)),
                 List.of(new MobSpawnSettings.SpawnerData(ModEntities.ASWANG.get(), 15, 2, 4))));
 
         context.register(SPAWN_MANANANGGAL, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
-                HolderSet.direct(biomes.getOrThrow(Biomes.PLAINS), biomes.getOrThrow(Biomes.JUNGLE)),
+                HolderSet.direct(biomes.getOrThrow(Biomes.PLAINS), biomes.getOrThrow(Biomes.JUNGLE), biomes.getOrThrow(Biomes.PLAINS)),
                 List.of(new MobSpawnSettings.SpawnerData(ModEntities.MANANANGGAL.get(), 15, 1, 2))));
 
         context.register(SPAWN_MANGKUKULAM, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
-                HolderSet.direct(biomes.getOrThrow(Biomes.PLAINS), biomes.getOrThrow(Biomes.JUNGLE)),
+                HolderSet.direct(biomes.getOrThrow(Biomes.SWAMP), biomes.getOrThrow(Biomes.JUNGLE)),
                 List.of(new MobSpawnSettings.SpawnerData(ModEntities.MANGKUKULAM.get(), 10, 1, 2))));
 
         context.register(SPAWN_BABAYLAN, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
@@ -74,7 +74,7 @@ public class ModBiomeModifiers {
                 List.of(new MobSpawnSettings.SpawnerData(ModEntities.NUNO.get(), 15, 2, 4))));
 
         context.register(SPAWN_TIKBALANG, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
-                HolderSet.direct(biomes.getOrThrow(Biomes.PLAINS), biomes.getOrThrow(Biomes.FOREST), biomes.getOrThrow(Biomes.STONY_PEAKS)),
+                HolderSet.direct(biomes.getOrThrow(Biomes.PLAINS), biomes.getOrThrow(Biomes.FOREST), biomes.getOrThrow(Biomes.JUNGLE), biomes.getOrThrow(Biomes.STONY_PEAKS)),
                 List.of(new MobSpawnSettings.SpawnerData(ModEntities.TIKBALANG.get(), 10, 1, 2))));
 
         context.register(SPAWN_SARIMANOK, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
