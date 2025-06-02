@@ -56,5 +56,4 @@ public class ModEventBusEvents {
         event.register(ModEntities.SARIMANOK.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 Mob::checkMobSpawnRules, SpawnPlacementRegisterEvent.Operation.OR);
     }
-
 }

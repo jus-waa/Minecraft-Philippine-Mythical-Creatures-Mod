@@ -39,7 +39,7 @@ import java.util.function.Predicate;
 
 
 public class BakunawaBoss extends Monster {
-    private int lightningCooldown = 10;
+    private int lightningCooldown = 5;
 
     private final ServerBossEvent bossEvent = (ServerBossEvent)(new ServerBossEvent(Component.literal("Bakunawa"), BossEvent.BossBarColor.BLUE, BossEvent.BossBarOverlay.NOTCHED_20)).setDarkenScreen(true);
     private static final EntityDataAccessor<Boolean> ATTACKING =
@@ -65,7 +65,7 @@ public class BakunawaBoss extends Monster {
         if (!this.level().isClientSide()) {
             if (lightningCooldown <= 0) {
                 summonLightning();
-                lightningCooldown = 10; // 1 second cooldown
+                lightningCooldown = 5; // 1 second cooldown
             } else {
                 lightningCooldown--;
             }
@@ -74,7 +74,7 @@ public class BakunawaBoss extends Monster {
     private void summonLightning() {
         if (!this.level().isClientSide()) {
             // summons around 5 blocks
-            int radius = 25;
+            int radius = 45;
 
             // Random offsets
             double offsetX = (this.random.nextDouble() * 2 - 1) * radius;

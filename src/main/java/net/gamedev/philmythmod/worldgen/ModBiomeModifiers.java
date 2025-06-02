@@ -29,7 +29,6 @@ public class ModBiomeModifiers {
     public static final ResourceKey<BiomeModifier> SPAWN_BERBEROKA = registerKey("spawn_berberoka");
     public static final ResourceKey<BiomeModifier> SPAWN_DIWATA = registerKey("spawn_diwata");
     public static final ResourceKey<BiomeModifier> SPAWN_KAPRE = registerKey("spawn_kapre");
-
     public static final ResourceKey<BiomeModifier> SPAWN_NUNO = registerKey("spawn_nuno");
     public static final ResourceKey<BiomeModifier> SPAWN_TIKBALANG = registerKey("spawn_tikbalang");
     public static final ResourceKey<BiomeModifier> SPAWN_SARIMANOK = registerKey("spawn_sarimanok");
@@ -40,7 +39,7 @@ public class ModBiomeModifiers {
 
         context.register(SPAWN_BAKUNAWA, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
                 HolderSet.direct(biomes.getOrThrow(Biomes.OCEAN)),
-                List.of(new MobSpawnSettings.SpawnerData(ModEntities.BAKUNAWA.get(), 100, 1, 1))
+                List.of(new MobSpawnSettings.SpawnerData(ModEntities.BAKUNAWA.get(), 1, 1, 1))
         ));
         context.register(SPAWN_ASWANG, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
                 HolderSet.direct(biomes.getOrThrow(Biomes.PLAINS)),
