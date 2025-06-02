@@ -112,8 +112,8 @@ public class BerberokaEntity extends Monster {
         super.defineSynchedData();
         this.entityData.define(ATTACKING, false);
     }
-    public static boolean canSpawn(EntityType<BakunawaBoss> type, LevelAccessor level, MobSpawnType reason, BlockPos pos, RandomSource random) {
-        int radius = 32;
+    public static boolean canSpawn(EntityType<BerberokaEntity> type, LevelAccessor level, MobSpawnType reason, BlockPos pos, RandomSource random) {
+        int radius = 2048;
         AABB checkArea = new AABB(pos).inflate(radius);
         boolean alreadyExists = !level.getEntitiesOfClass(BerberokaEntity.class, checkArea).isEmpty();
         if (pos.getY() < level.getSeaLevel()) return false;

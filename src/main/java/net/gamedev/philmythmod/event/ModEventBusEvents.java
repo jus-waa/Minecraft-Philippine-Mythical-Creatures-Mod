@@ -46,7 +46,7 @@ public class ModEventBusEvents {
         event.register(ModEntities.BABAYLAN.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 Mob::checkMobSpawnRules, SpawnPlacementRegisterEvent.Operation.OR);
         event.register(ModEntities.BERBEROKA.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-                Mob::checkMobSpawnRules, SpawnPlacementRegisterEvent.Operation.OR);
+                BerberokaEntity::canSpawn, SpawnPlacementRegisterEvent.Operation.OR);
         event.register(ModEntities.DIWATA.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 Mob::checkMobSpawnRules, SpawnPlacementRegisterEvent.Operation.OR);
         event.register(ModEntities.NUNO.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
@@ -54,6 +54,6 @@ public class ModEventBusEvents {
         event.register(ModEntities.TIKBALANG.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 Mob::checkMobSpawnRules, SpawnPlacementRegisterEvent.Operation.OR);
         event.register(ModEntities.SARIMANOK.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-                Mob::checkMobSpawnRules, SpawnPlacementRegisterEvent.Operation.OR);
+                SarimanokEntity::canSpawn, SpawnPlacementRegisterEvent.Operation.OR);
     }
 }

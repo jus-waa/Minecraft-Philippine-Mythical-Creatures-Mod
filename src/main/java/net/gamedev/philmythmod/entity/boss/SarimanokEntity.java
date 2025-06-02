@@ -73,8 +73,8 @@ public class SarimanokEntity extends Monster {
 
         this.walkAnimation.update(f, 0.2f);
     }
-    public static boolean canSpawn(EntityType<BakunawaBoss> type, LevelAccessor level, MobSpawnType reason, BlockPos pos, RandomSource random) {
-        int radius = 32;
+    public static boolean canSpawn(EntityType<SarimanokEntity> type, LevelAccessor level, MobSpawnType reason, BlockPos pos, RandomSource random) {
+        int radius = 2048;
         AABB checkArea = new AABB(pos).inflate(radius);
         boolean alreadyExists = !level.getEntitiesOfClass(SarimanokEntity.class, checkArea).isEmpty();
         if (pos.getY() < level.getSeaLevel()) return false;
