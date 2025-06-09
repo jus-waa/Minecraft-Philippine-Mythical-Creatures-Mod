@@ -34,7 +34,7 @@ public class ModEntities {
                     .sized(1.0f, 2.5f).build("babaylan"));
     public static final RegistryObject<EntityType<BerberokaEntity>> BERBEROKA =
             ENTITY_TYPES.register("berberoka", () -> EntityType.Builder.of(BerberokaEntity::new, MobCategory.MONSTER)
-                    .sized(2.0f, 2.8f).build("berberoka"));
+                    .sized(1.0f, 2.8f).build("berberoka"));
     public static final RegistryObject<EntityType<DiwataEntity>> DIWATA =
             ENTITY_TYPES.register("diwata", () -> EntityType.Builder.of(DiwataEntity::new, MobCategory.MONSTER)
                     .sized(1.0f, 2.5f).build("diwata"));

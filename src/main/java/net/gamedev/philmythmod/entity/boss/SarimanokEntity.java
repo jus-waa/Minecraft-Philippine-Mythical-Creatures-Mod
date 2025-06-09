@@ -139,7 +139,10 @@ public class SarimanokEntity extends Monster {
         super.getExperienceReward();
         return 500 + this.random.nextInt(600);
     }
-
+    //by pass fire
+    public boolean fireImmune(){
+        return true;
+    }
     // Sound
     @Nullable
     @Override

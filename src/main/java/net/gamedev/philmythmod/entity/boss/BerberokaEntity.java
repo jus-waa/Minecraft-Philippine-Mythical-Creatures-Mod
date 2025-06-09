@@ -194,6 +194,10 @@ public class BerberokaEntity extends Monster {
         }
         return super.isInvulnerableTo(pDamageSource);
     }
+    //by pass fire
+    public boolean fireImmune(){
+        return true;
+    }
     // Sound
     @Nullable
     @Override

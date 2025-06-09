@@ -3,6 +3,7 @@
   "biomes": [
     "minecraft:plains",
     "minecraft:forest",
+    "minecraft:jungle",
     "minecraft:stony_peaks"
   ],
   "spawners": {

@@ -168,11 +168,13 @@ public class MangkukulamEntity extends PathfinderMob implements RangedAttackMob 
         super.dropCustomDeathLoot(pSource, pLooting, pRecentlyHit);
 
         if (this.random.nextFloat() < 0.2F + (pLooting * 0.1F)){
-            this.spawnAtLocation(new ItemStack(ModItems.CURSED_FANG.get()));
-        }
+            ItemStack potion = new ItemStack(Items.POTION);
+            PotionUtils.setPotion(potion, Potions.HEALING); // or Potions.REGENERATION, etc.
+            this.spawnAtLocation(potion);        }
         if (this.random.nextFloat() < 0.5F + (pLooting * 0.1F)){ // .5f is 50%, .1f is 10%
-            int rottenFleshCount = 2 + this.random.nextInt(4);
-            this.spawnAtLocation(new ItemStack(Items.ROTTEN_FLESH), rottenFleshCount);
+            ItemStack potion = new ItemStack(Items.POTION);
+            PotionUtils.setPotion(potion, Potions.EMPTY);
+            this.spawnAtLocation(potion);
         }
         if (!this.level().isClientSide) {
             int xp = this.getExperienceReward();

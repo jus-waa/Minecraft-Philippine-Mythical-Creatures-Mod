@@ -30,6 +30,17 @@
   "block.philmythmod.incense_table_block": "Incense Table",
 
   "entity.minecraft.villager.philmythmod.albularyo_villager": "Albularyo",
+  "entity.philmythmod.bakunawa": "Bakunawa",
+  "entity.philmythmod.aswang": "Aswang",
+  "entity.philmythmod.manananggal": "Manananggal",
+  "entity.philmythmod.kapre": "Kapre",
+  "entity.philmythmod.mangkukulam": "Mangkukulam",
+  "entity.philmythmod.babaylan": "Babaylan",
+  "entity.philmythmod.berberoka": "Berberoka",
+  "entity.philmythmod.diwata": "Diwata",
+  "entity.philmythmod.nuno": "Nuno",
+  "entity.philmythmod.tikbalang": "Tikbalang",
+  "entity.philmythmod.sarimanok": "Sarimanok",
 
   "creativetab.philippine_mythical_mod_tab": "Elementalika: Eclipse of Bakunawa"
 }

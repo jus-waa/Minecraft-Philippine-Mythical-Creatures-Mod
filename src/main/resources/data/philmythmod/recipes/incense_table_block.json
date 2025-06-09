@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WIW",
+    " S ",
+    "S S"
+  ],
+  "key": {
+    "W": { "item": "minecraft:oak_planks" },
+    "I": { "item": "minecraft:iron_ingot" },
+    "S": { "item": "minecraft:stick" }
+  },
+  "result": {
+    "item": "philmythmod:incense_table_block",
+    "count": 1
+  }
+}

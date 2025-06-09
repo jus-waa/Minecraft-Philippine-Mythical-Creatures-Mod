@@ -6,8 +6,8 @@
   ],
   "spawners": {
     "type": "philmythmod:berberoka",
-    "maxCount": 3,
-    "minCount": 2,
-    "weight": 5
+    "maxCount": 1,
+    "minCount": 1,
+    "weight": 4
   }
 }

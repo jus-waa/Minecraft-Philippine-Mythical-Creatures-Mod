@@ -1,19 +1,22 @@
 package net.gamedev.philmythmod.item;
 
 import net.gamedev.philmythmod.PhilippineMythMod;
+import net.gamedev.philmythmod.block.ModBlocks;
 import net.gamedev.philmythmod.entity.ModEntities;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Rarity;
-import net.minecraft.world.item.ShieldItem;
-import net.minecraft.world.item.SwordItem;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+
+import static net.gamedev.philmythmod.block.ModBlocks.BLOCKS;
 
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
@@ -138,8 +141,7 @@ public class ModItems {
             () -> new SwordItem(ModToolTiers.MOONCORE_SCALE, 6, -2.4F, new Item.Properties().fireResistant().setNoRepair()));
     public static final RegistryObject<Item> KALASAG = ITEMS.register("kalasag",
             () -> new ShieldItem(new Item.Properties().durability(1008).fireResistant().setNoRepair()));
-    // reminder:
-    // haliyas/' sword, shield, sarimanok spawn egg, and (all other spawn eggs)
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }
